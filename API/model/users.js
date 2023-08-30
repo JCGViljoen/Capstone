@@ -1,0 +1,79 @@
+// users
+const db = require("../config");
+const { hash, compare, hashSync } = require("bcrypt");
+const { createToken } = require("../middelware/authenticate")
+
+class Users{
+    fetchUsers(req,res) {
+        const query = 
+        `SELECT user_id, firstName, lastName, email, password, profile_image_url,cellNum, userRole 
+        FROM Users; 
+        `
+        db.query(query, (err, results)=>{
+            if (err) throw err;
+            res.json({
+                status: res.statusCode,
+                results,
+            });
+        });
+    };
+
+    updateUser(req,res) {
+        const query = `
+        UPDATE Users set?
+        where userID = ${req.params.id};
+        `
+        db.query(query, (err) => {
+          if (err) throw err;
+          res.json({
+            status: res.statusCode,
+            msg: "The user has been updated 👌",
+          });
+        });
+    };
+    deleteUser(req, res) {
+        const query = `
+                DELETE FROM Users
+                WHERE userID = ${req.params.id};
+                `;
+        db.query(query, (err) => {
+          if (err) throw err;
+          res.json({
+            status: res.statusCode,
+            msg: "The user has been deleted",
+          });
+        });
+      }
+
+      
+
+      async register(req, res) {
+        const data = req.body;
+        
+        data.userPass = await hash(data.userPass, 15);
+        
+        const user = {
+          emailAdd: data.emailAdd,
+          userPass: data.userPass,
+        };
+        //query
+        const query = `
+            insert into Users
+            set ?;
+            `;
+        db.query(query, [data], (err) => {
+          if (err) throw err;
+          let token = createToken(user);
+          res.cookie("LegitUser", token, {
+            maxAge: 3600000,
+            httpOnly: true,
+          });
+          res.json({
+            status: res.statusCode,
+            msg: "You have been registered",
+          });
+        });
+      }
+
+}
+module.exports = Users;
