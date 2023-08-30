@@ -1,12 +1,11 @@
-// err handling
-function errorHandling( err, req, res, next) {
+function errorHandling(err, req, res, next) {
     if (err) {
-        let status = err.status || 500
-        res.json({
+        let status = err.status || 500;
+        let message = err.message || "An error occurred, try again later 😥";
+        res.status(status).json({
             status,
-            msg: "An error occurred, try again later 😥"
-        })
-        next()
+            msg: message
+        });
     }
 }
 
