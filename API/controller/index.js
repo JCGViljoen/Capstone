@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const routes = express.Router();
 
 
-const { products, users, orders } = require("../model");
+const { products, users, orders, orderItems } = require("../model");
 
 // Products routes
 // CREATE
@@ -84,7 +84,30 @@ routes.delete('/order/:id', (req, res) => {
     orders.deleteOrder(req, res);
 });
 
+// OrderItems routes
+// CREATE
+routes.post('/orderItem', bodyParser.json(), (req, res) => {
+    orders.createOrder(req, res);
+});
 
+// READ
+routes.get('/orderItems', (req, res) => {
+    orders.fetchOrders(req, res);
+});
+
+routes.get('/orderItem/:id', (req, res) => {
+    orders.fetchOrder(req, res);
+});
+
+// UPDATE
+routes.patch('/orderItem/:id', bodyParser.json(), (req, res) => {
+    orders.updateOrder(req, res);
+});
+
+// DELETE
+routes.delete('/orderItem/:id', (req, res) => {
+    orders.deleteOrder(req, res);
+});
 
 
 
