@@ -119,6 +119,54 @@ class Users {
             });
         }
     }
+    login(req, res) {
+        const { email, userPass } = req.body;
+        const query = `
+            SELECT user_id, firstName, lastName, email, userPass, profile_image_url, cellNum, userRole
+            FROM Users
+            WHERE email = ?;
+        `;
+        db.query(query, [email], (err, result) => {
+           console.log(err);
+            if (err) {
+                return res.status(500).json({
+                    status: res.statusCode,
+                    error: "An error occurred while logging in.",
+                });
+            }
+            if (!result?.length) {
+                return res.json({
+                    status: res.statusCode,
+                    msg: "That email does not exist.",
+                });
+            } else {
+                compare(userPass, result[0].userPass, (cErr, cResult) => {
+                    if (cErr) {
+                        return res.status(500).json({
+                            status: res.statusCode,
+                            error: "An error occurred while comparing passwords.",
+                        });
+                    }
+                    const token = createToken({
+                        email,
+                        userPass,
+                    });
+                    if (cResult) {
+                        res.json({
+                            msg: "You've successfully logged in.",
+                            token,
+                            result: result[0],
+                        });
+                    } else {
+                        res.json({
+                            status: res.statusCode,
+                            msg: "Invalid password or you are not registered.",
+                        });
+                    }
+                });
+            }
+        });
+      }
 }
 
 module.exports = Users;

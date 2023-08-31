@@ -37,7 +37,7 @@ routes.get("^/$|/challenger", (req, res) => {
 
 app.use(errorHandling);
 
-// Server
+
 app.listen(port, () => {
   console.log(`The server is running on port ${port} `);
 });

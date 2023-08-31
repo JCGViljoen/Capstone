@@ -3,9 +3,9 @@ const bodyParser = require("body-parser");
 const routes = express.Router();
 
 
-const { products, users } = require("../model");
+const { products, users, orders } = require("../model");
 
-// Products router
+// Products routes
 // CREATE
 routes.post("/product", bodyParser.json(), (req, res) => {
     products.registerProduct(req, res);
@@ -52,6 +52,41 @@ routes.patch("/user/:id", bodyParser.json(), (req, res) => {
 routes.delete("/user/:id", bodyParser.json(), (req, res) => {
     users.deleteUser(req, res);
 });
+
+// LOGIN
+routes.post("/login", bodyParser.json(), (req, res) => {
+    users.login(req, res);
+});
+
+
+// Orders routes
+// CREATE
+routes.post('/order', bodyParser.json(), (req, res) => {
+    orders.createOrder(req, res);
+});
+
+// READ
+routes.get('/orders', (req, res) => {
+    orders.fetchOrders(req, res);
+});
+
+routes.get('/order/:id', (req, res) => {
+    orders.fetchOrder(req, res);
+});
+
+// UPDATE
+routes.patch('/order/:id', bodyParser.json(), (req, res) => {
+    orders.updateOrder(req, res);
+});
+
+// DELETE
+routes.delete('/order/:id', (req, res) => {
+    orders.deleteOrder(req, res);
+});
+
+
+
+
 
 module.exports = {
     express,
