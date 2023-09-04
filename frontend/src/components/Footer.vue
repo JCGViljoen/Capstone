@@ -2,13 +2,13 @@
     <div class="container">
       <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top" style="background-color: #eff2f;">
         <div class="col mb-3">
-          <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+          <a href="home" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
           </a>
           <p class="text-white">DIGI-STOP © 2023</p>
         </div>
         <div class="col mb-3">
-          <!-- Sign-up form for newsletter -->
+          
           <h5><strong>Newsletter Signup</strong></h5>
           <form>
             <div class="mb-3">
@@ -40,5 +40,9 @@
   </script>
   
   <style scoped>
+  .container{
+    height: 100vh;
+  }
+
   </style>
   

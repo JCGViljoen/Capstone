@@ -1,5 +1,6 @@
 <template>
   <div>
+<h1 class="h1">About Page</h1>
 
   </div>
 </template>
@@ -11,5 +12,7 @@
 </script>
 
 <style scoped>
-
+.h1{
+  color: green;
+}
 </style>
