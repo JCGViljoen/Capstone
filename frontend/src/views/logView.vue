@@ -1,11 +1,16 @@
 <template>
     <div>
 <h2>login</h2>
-    </div>
+<Login/>
+   </div>
 </template>
 
 <script>
+import Login from '@/components/LoginComp.vue'
     export default {
+  components: { 
+    Login
+},
         
     }
 </script>
