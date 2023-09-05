@@ -1,20 +1,56 @@
 <template>
-    <div class="products">
-        <h1>Products</h1>
-        
+    <div>
+        <section class="hero">
+            <div class="heading">
+                <h1>Tools</h1>
+                <h6>Find your tools to your next Project!</h6>
+            </div>
+        </section>
+        <div class="product">
+            <Products/>
+            
+          </div>
     </div>
-</template>
+    
+  </template>
+  
+  <script>
+  import Products from '../components/ProductCard.vue'
+  export default {
+    Products
+    
+  };
+  </script>
+  
+  <style scoped>
 
-<script>
-    export default {
-        
-    }
-</script>
+  body, html {
+    margin: 0;
+    padding: 0;
+  }
 
-<style scoped>
-.products{
+  .hero {
+    background-color: #000;
+    margin-top: 0;
+    padding-top: 0; 
+  }
+  .heading{
+    color: #fff;    
+  }
+  
+  .product {
     text-align: center;
-    padding-top: 50rem;
-}
-
-</style>
+    padding: 20px;
+  }
+  
+  .img-fluid {
+    max-width: 100%; 
+    height: auto; 
+  }
+  @media (max-width: 300px) {
+    .product {
+      min-width: 300px;
+    }
+  }
+  </style>
+  
