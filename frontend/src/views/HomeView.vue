@@ -23,9 +23,49 @@
           <p align="center"><a href="https://twitter.com/nodws" class="btn twtr" target="_b">Follow me on Twitter</a>
           </p>
         </section>
+
+        <div class="sidebar">
+          <ul>
+            <li><a href="#"><i class="fas fa-home"></i></a></li>
+            <li><a href="#"><i class="fas fa-search"></i></a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i></a></li>
+            <!-- Add more items as needed -->
+          </ul>
+        </div>
+        
       
 
     <h1>Just Arrived</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card">
+          <img src="https://i.postimg.cc/HLtFFf33/51r-F0ezg-PHL.jpg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="https://i.postimg.cc/d0nS5Gtx/71cj5c-Nm7-ZL-SY500.jpg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
   </div>
 </template>
 
@@ -38,11 +78,10 @@ export default {
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i');
-html,body{
-  margin:0;
-  height:120%;
+html, body {
+  margin: 0;
   font-family: 'Josefin Sans', sans-serif;
-
+  min-width: 300px; 
 }
 a{
   text-decoration:none
@@ -60,6 +99,9 @@ a{
   max-height:550px;
   min-width:300px;
   color:#eee;
+  height: 40vh; 
+  min-height: 300px; 
+  max-height: 400px;
 }
 .header:after{
   content:"";
@@ -189,6 +231,68 @@ button {
   flex-shrink: 0;
 }
 
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  left: -60px; /* Initially hide the sidebar to the left */
+  top: 0;
+  width: 60px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  transition: left 0.3s; /* Add a smooth transition for sliding in/out */
+}
+
+/* Show the sidebar on hover */
+.sidebar:hover {
+  left: 0;
+}
+
+/* Sidebar Item Styles */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  position: relative; /* Position relative for absolute positioning of icons */
+}
+
+/* Icon Styles (adjust as needed) */
+.sidebar i {
+  margin-right: 10px;
+  font-size: 18px;
+  position: absolute;
+  left: -30px; /* Position the icons outside the sidebar */
+  opacity: 0; /* Initially hide the icons */
+  transition: opacity 0.3s; /* Add a smooth transition for fading in/out */
+}
+
+/* Show the icons on hover */
+.sidebar a:hover i {
+  opacity: 1;
+  left: 10px; /* Position the icons closer to the labels */
+}
+
+.card .card-img-top {
+  width: 100%;
+  max-width: 200px; 
+  height: auto;
+}
+@media (max-width: 600px) {
+  .header {
+    height: 50vh; 
+    min-height: 250px; 
+    max-height: 350px; 
+  }
+}
 
 
 

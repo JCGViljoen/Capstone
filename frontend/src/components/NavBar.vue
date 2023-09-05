@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <router-link class="navbar-brand" to="/">DIGI-STOP</router-link>
+        <router-link class="navbar-brand logo-animation"  to="/">DIGI-STOP</router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,6 +51,18 @@
   
   .nav-link {
     color: white; 
+  }
+
+  .logo-animation {
+    
+    color: blue;  
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; 
+  }
+  
+  /* Hover animation for the logo */
+  .logo-animation:hover {
+    transform: scale(1.2); 
+    color: red; 
   }
   
   </style>
