@@ -59,7 +59,6 @@
     transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; 
   }
   
-  /* Hover animation for the logo */
   .logo-animation:hover {
     transform: scale(1.2); 
     color: red; 
