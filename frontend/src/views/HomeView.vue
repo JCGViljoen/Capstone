@@ -20,20 +20,10 @@
         </div>
         <section class="content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nisl turpis, porttitor et finibus id, viverra a metus. Praesent non ante sed orci posuere varius quis sit amet dui. Cras molestie magna orci, id gravida dolor molestie in. Duis sollicitudin turpis quis tortor egestas, ut ultrices nisl elementum. Vestibulum sed ipsum eget nulla laoreet cursus in ac sem. Integer a suscipit justo, quis aliquam sapien. Maecenas et tellus nibh. Vivamus tincidunt eros id commodo pellentesque.</p>
-          <p align="center"><a href="https://twitter.com/nodws" class="btn twtr" target="_b">Follow me on Twitter</a>
+          <p align="center"><a href="" class="btn twtr" target="_b">Check us out</a>
           </p>
         </section>
-
-        <div class="sidebar">
-          <ul>
-            <li><a href="#"><i class="fas fa-home"></i></a></li>
-            <li><a href="#"><i class="fas fa-search"></i></a></li>
-            <li><a href="#"><i class="fas fa-envelope"></i></a></li>
-            <!-- Add more items as needed -->
-          </ul>
-        </div>
         
-      
 
     <h1>Just Arrived</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -173,10 +163,6 @@ a{
   box-sizing:border-box;
   height:40px
 }
-.sides, .info{
-  flex: 0 0 auto;
-  width:50%
-}
 .info{
   width:100%;
   padding:15% 10% 0 10%;
@@ -231,55 +217,6 @@ button {
   flex-shrink: 0;
 }
 
-/* Sidebar Styles */
-.sidebar {
-  position: fixed;
-  left: -60px; /* Initially hide the sidebar to the left */
-  top: 0;
-  width: 60px;
-  height: 100%;
-  background-color: #333;
-  color: #fff;
-  transition: left 0.3s; /* Add a smooth transition for sliding in/out */
-}
-
-/* Show the sidebar on hover */
-.sidebar:hover {
-  left: 0;
-}
-
-/* Sidebar Item Styles */
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 10px;
-}
-
-.sidebar a {
-  text-decoration: none;
-  color: #fff;
-  display: block;
-  position: relative; /* Position relative for absolute positioning of icons */
-}
-
-/* Icon Styles (adjust as needed) */
-.sidebar i {
-  margin-right: 10px;
-  font-size: 18px;
-  position: absolute;
-  left: -30px; /* Position the icons outside the sidebar */
-  opacity: 0; /* Initially hide the icons */
-  transition: opacity 0.3s; /* Add a smooth transition for fading in/out */
-}
-
-/* Show the icons on hover */
-.sidebar a:hover i {
-  opacity: 1;
-  left: 10px; /* Position the icons closer to the labels */
-}
 
 .card .card-img-top {
   width: 100%;

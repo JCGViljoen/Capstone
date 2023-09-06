@@ -1,103 +1,198 @@
 <template>
-  <div>
-    <h2>Admin</h2>
+  <div class="admin">
+    <h1 class="admin-heading">Admin Interface💻</h1>
+    
+    <h2 class="section-heading">Products</h2>
+    <button @click="addProduct" class="btn btn-dark">Add Product</button>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock Quantity</th>
+            <th>Image</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="product in products" :key="product.product_id">
+            <td>{{ product.product_id }}</td>
+            <td>{{ product.prodName }}</td>
+            <td>{{ product.prodDesc }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock_quantity }}</td>
+            <td><img :src="product.product_image_url" :alt="product.prodName" style="max-width: 100px;"></td>
+            <td><button @click="editProduct(product)" class="btn btn-dark">Edit</button></td>
+            <td><button @click="deleteProduct(product.product_id)" class="btn btn-dark">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <!-- Products Table -->
-    <h3>Products</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="product in products" :key="product.id">
-          <td>{{ product.id }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.price }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Users Table -->
-    <h3>Users</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.id">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <h2 class="section-heading">Users</h2>
+    <button @click="addUser" class="btn btn-dark">Add User</button>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Profile Image</th>
+            <th>Cell Number</th>
+            <th>User Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users" :key="user.user_id">
+            <td>{{ user.user_id }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.userPass }}</td>
+            <td><img :src="user.profile_image_url" :alt="user.firstName" style="max-width: 100px;"></td>
+            <td>{{ user.cellNum }}</td>
+            <td>{{ user.userRole }}</td>
+            <td><button @click="editUser(user)" class="btn btn-dark">Edit</button></td>
+            <td><button @click="deleteUser(user.user_id)" class="btn btn-dark">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+// import AddProduct from "@/components/AddProduct.vue";
+// import AddUser from "@/components/AddUser.vue";
 
-export default {
-  data() {
-    return {
-      products: [],
-      users: [],
-    };
-  },
-  mounted() {
-    this.fetchProducts();
-    this.fetchUsers();
-  },
-  methods: {
-    async fetchProducts() {
-      try {
-        const response = await axios.get("your_api_url/products");
-        this.products = response.data;
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    },
-    async fetchUsers() {
-      try {
-        const response = await axios.get("your_api_url/users");
-        this.users = response.data;
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    },
-  },
-};
+// export default {
+//   components: {
+//     AddProduct,
+//     AddUser,
+//   },
+//   methods: {
+    
+//     async deleteProduct(productID) {
+//       this.$store.dispatch("deleteProduct, product_id")
+
+//       try {
+//         await axios.delete(`your_api_url/products/${productID}`);
+//       } catch (error) {
+//         console.error("Error deleting product:", error);
+//       }
+//     },
+
+
+//     async addUser() {
+//     },
+//     users(){
+//       return this.$store.state.users;
+//     }
+
+    
+    
+//   mounted() {
+//     this.$store.dispatch("fetchProducts");
+//     this.$store.dispatch("fetchUsers");
+//   },
+// }
+
+// methods: {
+//     async editProduct(product) {
+      
+//     },
+//     async deleteProduct(prodID) {
+//       this.$store.dispatch("deleteProduct", prodID);
+//     },
+//     async deleteUser(userID) {
+//       this.$store.dispatch("deleteUser", userID);
+//     },
+//   },
+//   computed: {
+//     homedecor() {
+//       return this.$store.state.homedecor;
+//     },
+//     users() {
+//       return this.$store.state.users;
+//     },
+//   },
+//   mounted() {
+//     this.$store.dispatch("fetchHomedecor");
+//     this.$store.dispatch("fetchUsers");
+//   },
+// };
 </script>
 
 <style scoped>
+.admin-heading {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-dark {
+  background-color: #343a40;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
 }
 
 table, th, td {
-  border: 1px solid #ddd; 
-}
-
-th, td {
-  padding: 8px; 
-  text-align: left; 
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 thead {
-  background-color: #f2f2f2; 
+  background-color: #f2f2f2;
 }
 
-
 th {
-  background-color: #333; 
-  color: white; 
-}</style>
+  background-color: #343a40;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    font-size: 14px;
+  }
+  
+  table {
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 6px;
+  }
+  
+  .section-heading {
+    font-size: 18px;
+  }
+}
+</style>
