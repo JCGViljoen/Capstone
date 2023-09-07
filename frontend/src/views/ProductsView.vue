@@ -9,11 +9,11 @@
         <div class="product">
           <div class="col" v-for="product in products" :key="product.product_id">
             <div class="card">
-              <img :src="products.product_image_url" class="card-img-top" :alt="products.prodName">
+              <img :src="product.product_image_url" class="card-img-top" :alt="product.prodName">
               <div class="card-body">
-                <h5 class="card-title">{{ products.prodName }}</h5>
-                <p class="card-text">{{ products.prodDesc }}</p>
-                <p class="card-text"><strong>Price: R{{ products.price }}</strong></p>
+                <h5 class="card-title">{{ product.prodName }}</h5>
+                <p class="card-text">{{ product.prodDesc }}</p>
+                <p class="card-text"><strong>Price: R{{ product.price }}</strong></p>
               </div>
             </div>
           </div>            
@@ -65,6 +65,7 @@
     border: 1px solid #e1e1e1;
     border-radius: 5px;
     transition: transform 0.2s;
+    width: 18rem;
   }
   
   .card:hover {

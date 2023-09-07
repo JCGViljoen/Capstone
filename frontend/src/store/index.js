@@ -1,13 +1,16 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 
-const apiUrl = 'https://capstone-tuy1.onrender.com/api' 
+const apiUrl = 'https://capstone-tuy1.onrender.com/' 
 
 export default createStore({
   state: {
     products: null, 
     users: null,  
-    orders: null,  
+    orders: null,
+    token: null,
+    msg: null,
+    postData: null,  
     orderItems: null,
   },
   mutations: {
@@ -27,7 +30,7 @@ export default createStore({
   actions: {
     async fetchProducts({ commit }) { 
       try {
-        const response = await axios.get(`${apiUrl}/products`)
+        const response = await axios.get(`${apiUrl}products`)
         commit('setProducts', response.data.results)
       } 
       catch (error) {
