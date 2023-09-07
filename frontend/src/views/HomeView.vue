@@ -4,9 +4,7 @@
       <h1 class="h1">
 
       </h1>
-       
-
-        <div class="header">
+       <div class="header">
           <div class="sides"> <a href="#" class="menu"> </a></div>
           <div class="info">
           <h1>Let's Make our Mark in the Metaverse</h1>
@@ -216,7 +214,9 @@ button {
   align-items: center;
   flex-shrink: 0;
 }
-
+.card{
+  height: 25rem;
+}
 
 .card .card-img-top {
   width: 100%;

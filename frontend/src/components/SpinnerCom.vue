@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="spinner-grow text-warning" role="status">
+        <div class="spinner-grow text-danger" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
 

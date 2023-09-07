@@ -1,10 +1,10 @@
 <template>
   <div class="admin">
-    <h1 class="admin-heading">Admin Interface💻</h1>
+    <h1 class="admin-heading">Admin</h1>
     
     <h2 class="section-heading">Products</h2>
-    <button @click="addProduct" class="btn btn-dark">Add Product</button>
-    <div class="table-responsive">
+    <button @click="addProduct" class="btn btn-dark"><AddProduct/></button>
+    <div class="table-responsive" >
       <table>
         <thead>
           <tr>
@@ -34,8 +34,8 @@
     </div>
 
     <h2 class="section-heading">Users</h2>
-    <button @click="addUser" class="btn btn-dark">Add User</button>
-    <div class="table-responsive">
+    <button @click="addUser" class="btn btn-dark"><AddUser/></button>
+    <div class="table-responsive" v-if="loading">
       <table>
         <thead>
           <tr>
@@ -43,7 +43,6 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Password</th>
             <th>Profile Image</th>
             <th>Cell Number</th>
             <th>User Role</th>
@@ -57,9 +56,8 @@
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.userPass }}</td>
             <td><img :src="user.profile_image_url" :alt="user.firstName" style="max-width: 100px;"></td>
-            <td>{{ user.cellNum }}</td>
+            <td>0{{ user.cellNum }}</td>
             <td>{{ user.userRole }}</td>
             <td><button @click="editUser(user)" class="btn btn-dark">Edit</button></td>
             <td><button @click="deleteUser(user.user_id)" class="btn btn-dark">Delete</button></td>
@@ -67,69 +65,54 @@
         </tbody>
       </table>
     </div>
+    <div v-else>
+      <Spinner/>
+    </div>
   </div>
 </template>
 
 <script>
-// import AddProduct from "@/components/AddProduct.vue";
-// import AddUser from "@/components/AddUser.vue";
-
-// export default {
-//   components: {
-//     AddProduct,
-//     AddUser,
-//   },
-//   methods: {
-    
-//     async deleteProduct(productID) {
-//       this.$store.dispatch("deleteProduct, product_id")
-
-//       try {
-//         await axios.delete(`your_api_url/products/${productID}`);
-//       } catch (error) {
-//         console.error("Error deleting product:", error);
-//       }
-//     },
-
-
-//     async addUser() {
-//     },
-//     users(){
-//       return this.$store.state.users;
-//     }
-
-    
-    
-//   mounted() {
-//     this.$store.dispatch("fetchProducts");
-//     this.$store.dispatch("fetchUsers");
-//   },
-// }
-
-// methods: {
-//     async editProduct(product) {
+import AddProduct from '@/components/AddProduct.vue'
+import AddUser from '@/components/AddUser.vue'
+import Spinner from '@/components/SpinnerCom.vue'
+export default {
+  components: {
+    AddProduct,
+    AddUser,
+    Spinner,
+  },
+  methods: {
+    async editProduct(product) {
       
-//     },
-//     async deleteProduct(prodID) {
-//       this.$store.dispatch("deleteProduct", prodID);
-//     },
-//     async deleteUser(userID) {
-//       this.$store.dispatch("deleteUser", userID);
-//     },
-//   },
-//   computed: {
-//     homedecor() {
-//       return this.$store.state.homedecor;
-//     },
-//     users() {
-//       return this.$store.state.users;
-//     },
-//   },
-//   mounted() {
-//     this.$store.dispatch("fetchHomedecor");
-//     this.$store.dispatch("fetchUsers");
-//   },
-// };
+    },
+    async addProduct(product_id){
+      this.$store.dispatch("addProduct", product_id)
+
+    },
+    async deleteProduct(product_id) {
+      this.$store.dispatch("deleteProduct", product_id);
+    },
+    async addUser(user_id) {
+      this.$store.dispatch("addUser", user_id)
+    },
+    async deleteUser(user_id) {
+      this.$store.dispatch("deleteUser", user_id);
+    },
+  },
+  computed: {
+    users() {
+      return this.$store.state.users;
+    },
+    products() {
+      return this.$store.state.products;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("fetchProducts");
+    this.$store.dispatch("fetchUsers");
+  },
+};
+    
 </script>
 
 <style scoped>

@@ -1,68 +1,120 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 
-const apiUrl = 'https://capstone-tuy1.onrender.com/' 
+const apiUrl = 'https://capstone-tuy1.onrender.com/'
 
 export default createStore({
   state: {
-    products: null, 
-    users: null,  
+    products: null,
+    users: null,
     orders: null,
     token: null,
     msg: null,
-    postData: null,  
+    postData: null,
     orderItems: null,
   },
   mutations: {
     setProducts(state, data) {
-      state.products = data
+      state.products = data;
     },
-    setUsers(state, users) {
-      state.users = users
+    setUsers(state, data) {
+      state.users = data;
+    },
+    // Rename the mutation to update products
+    updateProducts(state, data) {
+      state.products = data;
+    },
+    // Rename the mutation to update users
+    updateUsers(state, data) {
+      state.users = data;
     },
     setOrders(state, data) {
-      state.orders = data
+      state.orders = data;
     },
     setOrderItems(state, data) {
-      state.orderItems = data
+      state.orderItems = data;
     },
   },
   actions: {
-    async fetchProducts({ commit }) { 
+    async fetchProducts({ commit }) {
       try {
-        const response = await axios.get(`${apiUrl}products`)
-        commit('setProducts', response.data.results)
-      } 
-      catch (error) {
-        console.error('Error fetching products:', error)
+        const response = await axios.get(`${apiUrl}products`);
+        commit('setProducts', response.data.results);
+      } catch (error) {
+        console.error('Error fetching products:', error);
       }
     },
-    async fetchUsers({ commit }) { 
+    async fetchUsers({ commit }) {
       try {
-        const response = await axios.get(`${apiUrl}/users`)
-        commit('setUsers', response.data)
+        const response = await axios.get(`${apiUrl}users`);
+        commit('setUsers', response.data.results);
       } catch (error) {
-        console.error('Error fetching users:', error)
+        console.error('Error fetching users:', error);
       }
     },
-    async fetchOrders({ commit }) { 
+    // Add the editUsers action
+    async editUsers({ commit }, userdata) {
       try {
-        const response = await axios.get(`${apiUrl}/orders`)
-        commit('setOrders', response.data)
+        const response = await axios.put(`${apiUrl}user/${userdata.id}`, userdata);
+        commit('updateUsers', response.data);
       } catch (error) {
-        console.error('Error fetching orders:', error)
+        console.error('Error editing user:', error);
       }
     },
-    async fetchOrderItems({ commit }) { 
+    // Add the editProducts action
+    async editProducts({ commit }, productdata) {
       try {
-        const response = await axios.get(`${apiUrl}/orderitems`)
-        commit('setOrderItems', response.data)
+        const response = await axios.put(`${apiUrl}product/${productdata.id}`, productdata);
+        commit('updateProducts', response.data);
       } catch (error) {
-        console.error('Error fetching order items:', error)
+        console.error('Error editing product:', error);
+      }
+    },
+    async addUser({ commit }, userdata) {
+      try {
+        const response = await axios.post(`${apiUrl}user`, userdata);
+        location.reload();
+        commit('setUsers', response.data); // Update users after adding
+      } catch (error) {
+        console.error('Error adding user:', error);
+      }
+    },
+    async addProduct({ commit }, productdata) {
+      try {
+        const response = await axios.post(`${apiUrl}product`, productdata);
+        location.reload();
+        commit('setProducts', response.data); // Update products after adding
+      } catch (error) {
+        console.error('Error adding product:', error);
+      }
+    },
+    async deleteProduct({ commit }, product_id) {
+      try {
+        await axios.delete(`${apiUrl}product/${product_id}`);
+        location.reload();
+        // Optionally, you can commit a mutation here to remove the product from the state.
+      } catch (error) {
+        console.error('Error deleting product:', error);
+      }
+    },
+    async fetchOrders({ commit }) {
+      try {
+        const response = await axios.get(`${apiUrl}orders`);
+        commit('setOrders', response.data.results);
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
+    },
+    async fetchOrderItems({ commit }) {
+      try {
+        const response = await axios.get(`${apiUrl}orderitems`);
+        commit('setOrderItems', response.data);
+      } catch (error) {
+        console.error('Error fetching order items:', error);
       }
     },
   },
   modules: {
-
-  }
+    
+  },
 })
