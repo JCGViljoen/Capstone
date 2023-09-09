@@ -20,11 +20,9 @@ export default createStore({
     setUsers(state, data) {
       state.users = data;
     },
-    // Rename the mutation to update products
     updateProducts(state, data) {
       state.products = data;
     },
-    // Rename the mutation to update users
     updateUsers(state, data) {
       state.users = data;
     },
@@ -92,11 +90,21 @@ export default createStore({
       try {
         await axios.delete(`${apiUrl}product/${product_id}`);
         location.reload();
-        // Optionally, you can commit a mutation here to remove the product from the state.
+        commit('setProducts', response.data);
       } catch (error) {
         console.error('Error deleting product:', error);
       }
     },
+    async deleteUser({commit}, user_id){
+      try {
+        await axios.delete(`${apiUrl}user/${user_id}`);
+        location.reload();
+        commit('setUsers', response.data);
+      } catch (error) {
+        console.error('Error deleting user', error);
+      }
+    },
+    
     async fetchOrders({ commit }) {
       try {
         const response = await axios.get(`${apiUrl}orders`);
