@@ -14,6 +14,20 @@
             <h5 class="card-title">{{ product.prodName }}</h5>
             <p class="card-text">{{ product.prodDesc }}</p>
             <p class="card-text"><strong>Price: R{{ product.price }}</strong></p>
+            <router-link
+              :to="{
+                name: 'single',
+                params: { id: products.product_id },
+                query: {
+                  name: products.prodName,
+                  description: products.prodDesc,
+                  img: products_image_url,
+                  price: products.price,
+                },
+              }"
+            >
+              <button class="btn">View Product</button>
+            </router-link>
           </div>
         </div>
       </div>
@@ -59,13 +73,10 @@ body, html {
 }
 
 .product {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 20px;
-}
-
-.img-fluid {
-  max-width: 100%;
-  height: auto;
 }
 
 .card {
@@ -73,6 +84,8 @@ body, html {
   border-radius: 5px;
   transition: transform 0.2s;
   width: 18rem;
+  margin: 10px;
+  flex: 1;
 }
 
 .card:hover {
@@ -88,9 +101,19 @@ body, html {
   height: auto;
 }
 
-@media (max-width: 300px) {
+@media (max-width: 768px) {
   .product {
-    min-width: 300px;
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 576px) {
+  .product {
+    padding: 10px;
+  }
+
+  .card {
+    width: 100%;
   }
 }
 </style>
