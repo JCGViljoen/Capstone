@@ -34,7 +34,11 @@
     </div>
 
     <h2 class="section-heading">Users</h2>
+<<<<<<< HEAD
     <button  class="btn btn-dark"><AddUser/></button>
+=======
+    <AddUser @user-added="handleUserAdded" class="btn btn-dark"/>
+>>>>>>> aac5810357f7daec64226630c87890f18fc80619
     <div class="table-responsive" v-if="users">
       <table>
         <thead>
@@ -98,6 +102,12 @@ export default {
     async deleteUser(user_id) {
       this.$store.dispatch("deleteUser", user_id);
     },
+    handleUserAdded(newUser) {
+      // Assuming that `newUser` is the user data added by the AddUser component
+      // You can add this new user to the users array in the state
+      this.$store.commit('addUser', newUser);
+    },
+  
   },
   computed: {
     users() {

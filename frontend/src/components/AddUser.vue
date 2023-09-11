@@ -18,7 +18,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form @submit.prevent="addForm" class="d-flex flex-column gap-5">
+              <form @submit.prevent="addUser" class="d-flex flex-column gap-5">
                 <input type="text" v-model="userdata.firstName" placeholder="name">
                 <input type="text" v-model="userdata.lastName" placeholder="surname">
                 <input type="text" v-model="userdata.userCell" placeholder="cell number">
@@ -54,11 +54,20 @@
       };
     },
     methods: {
-      addForm() {
-        this.$store.dispatch('addUser', this.userdata);
-      },
+    addUser() {
+      this.$store.dispatch('addUser', this.userdata);
+      this.userdata = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        userPass: "",
+        profile_image_url: "",
+        cellNum: "",
+        userRole: "",
+      };
     },
-  };
+  },
+};
   </script>
   
   <style scoped>
