@@ -1,33 +1,45 @@
 <template>
-    <div>
-        <div class="login-page">
-            <div class="form">
-              <form class="register-form">
-                <input type="text" placeholder="name"/>
-                <input type="password" placeholder="password"/>
-                <input type="text" placeholder="email address"/>
-                <button>create</button>
-                <p class="message">Already registered? <a href="#">Sign In</a></p>
-              </form>
-              <form class="login-form">
-                <input type="text" placeholder="username"/>
-                <input type="password" placeholder="password"/>
-                <button>login</button>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
-              </form>
-            </div>
-          </div>
+  <div class="login-page">
+    <div class="form">
+      <form class="register-form" v-if="!loginFormVisible">
+        <input type="text" placeholder="name" />
+        <input type="password" placeholder="password" />
+        <input type="text" placeholder="email address" />
+        <button @click="toggleLoginForm">create</button>
+        <p class="message">Already registered? <a href="#" @click="toggleLoginForm">Sign In</a></p>
+      </form>
+
+      <form class="login-form" v-else @submit.prevent="login">
+        <input type="text" placeholder="username" v-model="loginData.username" />
+        <input type="password" placeholder="password" v-model="loginData.password" />
+        <button type="submit">login</button>
+        <p class="message">Not registered? <a href="#" @click="toggleLoginForm">Create an account</a></p>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
-
-   
+export default {
+  data() {
+    return {
+      loginFormVisible: false,
+      loginData: {
+        username: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    toggleLoginForm() {
+      this.loginFormVisible = !this.loginFormVisible;
+    },
+    login() {
+      
+    },
+  },
+};
 </script>
-
 <style scoped>
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 

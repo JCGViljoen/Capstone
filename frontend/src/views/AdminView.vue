@@ -34,8 +34,8 @@
     </div>
 
     <h2 class="section-heading">Users</h2>
-    <button @click="addUser" class="btn btn-dark"><AddUser/></button>
-    <div class="table-responsive" v-if="loading">
+    <button  class="btn btn-dark"><AddUser/></button>
+    <div class="table-responsive" v-if="users">
       <table>
         <thead>
           <tr>
@@ -92,9 +92,9 @@ export default {
     async deleteProduct(product_id) {
       this.$store.dispatch("deleteProduct", product_id);
     },
-    async addUser(user_id) {
-      this.$store.dispatch("addUser", user_id)
-    },
+    // async addUser(user_id) {
+    //   this.$store.dispatch("addUser", user_id)
+    // },
     async deleteUser(user_id) {
       this.$store.dispatch("deleteUser", user_id);
     },

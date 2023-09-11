@@ -1,5 +1,11 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import sweet from 'sweetalert';
+import router from '@/router';
+import { useCookies } from 'vue3-cookies';
+import AuthenticateUser from '@/service/AuthenticateUser';
+const { cookies } = useCookies()
+
 
 const apiUrl = 'https://capstone-tuy1.onrender.com/'
 
@@ -52,7 +58,6 @@ export default createStore({
         console.error('Error fetching users:', error);
       }
     },
-    // Add the editUsers action
     async editUsers({ commit }, userdata) {
       try {
         const response = await axios.put(`${apiUrl}user/${userdata.id}`, userdata);
@@ -61,7 +66,6 @@ export default createStore({
         console.error('Error editing user:', error);
       }
     },
-    // Add the editProducts action
     async editProducts({ commit }, productdata) {
       try {
         const response = await axios.put(`${apiUrl}product/${productdata.id}`, productdata);
@@ -70,14 +74,10 @@ export default createStore({
         console.error('Error editing product:', error);
       }
     },
-    async addUser({ commit }, userdata) {
-      try {
-        const response = await axios.post(`${apiUrl}user`, userdata);
+    async addUser(context, userdata) {
+      const response = await axios.post(`${apiUrl}register`, userdata);
         location.reload();
-        commit('setUsers', response.data); // Update users after adding
-      } catch (error) {
-        console.error('Error adding user:', error);
-      }
+        context.commit('setAddUser', response.data);
     },
     async addProduct({ commit }, productdata) {
       try {
@@ -92,7 +92,6 @@ export default createStore({
       try {
         await axios.delete(`${apiUrl}product/${product_id}`);
         location.reload();
-        // Optionally, you can commit a mutation here to remove the product from the state.
       } catch (error) {
         console.error('Error deleting product:', error);
       }
@@ -113,8 +112,67 @@ export default createStore({
         console.error('Error fetching order items:', error);
       }
     },
+
+    // register
+    async userAdd(context, content) {
+      try {
+        const { msg } = (await axios.post(`${apiUrl}user`, content)).data;
+        if (msg) {
+          sweet({
+            title: "User Add",
+            text: msg,
+            icon: "success",
+            timer: 5000,
+          });
+          context.dispatch("fetchUsers");
+          router.push({ name: "login" });
+        } else {
+          sweet({
+            title: "Error",
+            text: msg,
+            icon: "error",
+            timer: 5000,
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async LoginUser(context, userLogin) {
+      try {
+        const { msg, token, result } = (
+          await axios.post(`${apiUrl}login`, userLogin)
+        ).data;
+        if (result) {
+          context.commit(`setUsers`, { result, msg });
+          cookies.set("LegitUser", { token, msg, result });
+          AuthenticateUser.applyToken(token);
+          sweet({
+            title: msg,
+            text: `Welcome back ${result?.firstName}
+            ${result?.lastName}`,
+            icon: "success",
+            timer: 5000,
+          });
+          router.push({ name: "home" });
+        } else {
+          sweet({
+            title: "Error",
+            text: msg,
+            icon: "error",
+            timer: 5000,
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
   },
-  modules: {
-    
+  getters: {
+    filteredProducts(state) {
+      return state.searchResults;
+    },
   },
-})
+  modules: {},
+});
+
