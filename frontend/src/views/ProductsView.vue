@@ -7,7 +7,11 @@
       </div>
     </section>
     <div class="product" v-if="products">
-      <div class="col" v-for="product in products" :key="product.product_id">
+      <div class="sort-buttons">
+        <button @click="sortByPrice">Sort by Price</button>
+        <button @click="sortByName">Sort by Name</button>
+      </div>
+      <div class="col" v-for="product in sortedProducts" :key="product.product_id">
         <div class="card">
           <img :src="product.product_image_url" class="card-img-top" :alt="product.prodName" />
           <div class="card-body">
@@ -45,6 +49,27 @@ export default {
   computed: {
     products() {
       return this.$store.state.products;
+    },
+    sortedProducts() {
+      if (this.sortType === 'price') {
+        return [...this.products].sort((a, b) => a.price - b.price);
+      } else if (this.sortType === 'name') {
+        return [...this.products].sort((a, b) => a.prodName.localeCompare(b.prodName));
+      }
+      return this.products;
+    },
+  },
+  data() {
+    return {
+      sortType: '', 
+    };
+  },
+  methods: {
+    sortByPrice() {
+      this.sortType = 'price';
+    },
+    sortByName() {
+      this.sortType = 'name';
     },
   },
   components: {

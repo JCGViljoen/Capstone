@@ -133,6 +133,20 @@ export default createStore({
         console.error('Error fetching order items:', error);
       }
     },
+    
+      ConfirmEditUser({ commit }, userData) {
+        return new Promise((resolve, reject) => {
+          
+          setTimeout(() => {
+            if (Math.random() < 0.5) {
+              resolve(); 
+            } else {
+              reject(new Error("Edit user failed")); 
+            }
+          }, 1000);
+        });
+      
+    },
 
     // register
     async userAdd(context, content) {
@@ -162,7 +176,7 @@ export default createStore({
     async LoginUser(context, payload) {
       try {
         const { msg, token, result } = (
-          await axios.post(`${apiUrl}login`, payload)
+          await axios.post(`${apiUrl}LoginUser`, payload)
         ).data;
         if (result) {
           context.commit(`setUsers`, { result, msg });
