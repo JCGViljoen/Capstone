@@ -5,25 +5,26 @@
     <form @submit.prevent="addUser">
             
               <legend>Your Basic Info</legend>
+
+              <label for="user_name">Profile Picture</label>
+              <input type="text" id="profile_image_url" name="profile_image_url" v-model="content.profile_image_url" width="48" height="48" placeholder="https://your-image-url">
+    
     
               <label for="user_name">Name:</label>
-              <input type="text" id="user_name" name="user_name" v-model="content.firstName" required >
+              <input type="text" id="user_name" name="user_name" v-model="content.firstName" required placeholder="John" >
     
               <label for="surname">Surname:</label>
-              <input type="text" id="surname" name="user_lastname" v-model="content.lastName" required >
+              <input type="text" id="surname" name="user_lastname" v-model="content.lastName" required placeholder="Doe" >
     
               <label for="user_email">Email:</label>
-              <input type="email" id="user_email" name="user_email" v-model="content.email" required >
+              <input type="email" id="user_email" name="user_email" v-model="content.email" required placeholder="Johndoe@email.com">
     
               <label for="cellNum">Cell Number:</label>
-              <input type="text" id="cellNum" name="cellNum" v-model="content.cellNum" required >
+              <input type="text" id="cellNum" name="cellNum" v-model="content.cellNum" required placeholder="0123456789">
     
               <label for="userPass">Password:</label>
-              <input type="password" id="userPass" name="userPass" v-model="content.userPass" required >
-    
-              <label for="userRole">Role:</label>
-              <input type="text" id="userRole" name="userRole" v-model="content.userRole" required >
-           
+              <input type="password" id="userPass" name="userPass" v-model="content.userPass" required placeholder="freewilly123">
+             
     
             <button type="submit">Sign Up</button>
     </form>
@@ -111,6 +112,7 @@
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     margin-bottom: 30px;
   }
+  
   
   
   button {

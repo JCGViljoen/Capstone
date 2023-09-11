@@ -12,6 +12,7 @@ const apiUrl = 'https://capstone-tuy1.onrender.com/'
 export default createStore({
   state: {
     products: null,
+    product: null,
     users: null,
     orders: null,
     token: null,
@@ -22,6 +23,9 @@ export default createStore({
   mutations: {
     setProducts(state, data) {
       state.products = data;
+    },
+    setProducts(state, data) {
+      state.products = data
     },
     setUsers(state, data) {
       state.users = data;
@@ -44,6 +48,14 @@ export default createStore({
       try {
         const response = await axios.get(`${apiUrl}products`);
         commit('setProducts', response.data.results);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    },
+    async fetchProduct(context, product_id) {
+      try {
+        const {result} = (await axios.get(`${apiUrl}product/${product_id}`)).data;
+        context.commit('setProduct', result);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -81,7 +93,7 @@ export default createStore({
       try {
         const response = await axios.post(`${apiUrl}product`, productdata);
         location.reload();
-        commit('setProducts', response.data); // Update products after adding
+        commit('setProducts', response.data); 
       } catch (error) {
         console.error('Error adding product:', error);
       }
@@ -90,10 +102,7 @@ export default createStore({
       try {
         await axios.delete(`${apiUrl}product/${product_id}`);
         location.reload();
-<<<<<<< HEAD
-=======
         commit('setProducts', response.data);
->>>>>>> aac5810357f7daec64226630c87890f18fc80619
       } catch (error) {
         console.error('Error deleting product:', error);
       }
