@@ -47,7 +47,8 @@ const routes = [
     path: '/edituser/:id?',
     name: 'edituser',
     component: () => import ('../views/EditUserView.vue')
-  }
+  },
+  
 ]
 
 const router = createRouter({
