@@ -60,7 +60,7 @@
             <td>0{{ user.cellNum }}</td>
             <td>{{ user.userRole }}</td>
             <td><router-link
-              :to="{ name: 'edituser', params: { id: user.user_id } }"
+              :to="{ name: 'edituser', params: { user_id: user.user_id } }"
               class="del btn btn-info"
               >Edit</router-link
             ></td>
