@@ -44,12 +44,23 @@
 
 <script>
 import Spinner from '@/components/SpinnerCom.vue';
+import { mapState } from 'vuex';
 
 export default {
   computed: {
     products() {
       return this.$store.state.products;
     },
+    
+    ...mapState(['searchQuery']),
+    filteredProducts() {
+      const query = this.searchQuery.toLowerCase();
+      return this.products.filter(product => {
+        return product.prodName.toLowerCase().includes(query);
+      });
+    },
+    
+    
     sortedProducts() {
       if (this.sortType === 'price') {
         return [...this.products].sort((a, b) => a.price - b.price);

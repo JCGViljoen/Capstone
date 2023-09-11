@@ -33,19 +33,40 @@
             
           </ul>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2"   aria-label="Search"  type="text"
+      v-model="searchQuery"
+      @input="updateSearchQuery"
+      placeholder="Search for products">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
       </div>
     </nav>
   </template>
-  <script scoped>
+  <script>
+  export default {
+  computed: {
+    searchQuery: {
+      get() {
+        return this.$store.state.searchQuery;
+      },
+      set(value) {
+        this.$store.commit('setSearchQuery', value);
+      },
+    },
+  },
+  methods: {
+    updateSearchQuery() {
+      // The computed property handles updating the searchQuery in the Vuex store
+    },
+  },
+};
 </script>
   <style scoped>
 
   nav{
     padding-top: 0;
+    position:sticky;
     
   }
   .container-fluid {

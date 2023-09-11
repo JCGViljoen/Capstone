@@ -18,8 +18,8 @@
         </div>
         <section class="content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nisl turpis, porttitor et finibus id, viverra a metus. Praesent non ante sed orci posuere varius quis sit amet dui. Cras molestie magna orci, id gravida dolor molestie in. Duis sollicitudin turpis quis tortor egestas, ut ultrices nisl elementum. Vestibulum sed ipsum eget nulla laoreet cursus in ac sem. Integer a suscipit justo, quis aliquam sapien. Maecenas et tellus nibh. Vivamus tincidunt eros id commodo pellentesque.</p>
-          <p align="center"><a href="" class="btn twtr" target="_b">Check us out</a>
-          </p>
+          
+          
         </section>
         
 
@@ -54,13 +54,13 @@
       </div>
       
     </div>
+    
   </div>
 </template>
 
 <script>
-export default {
-  components: {},
-};
+
+
 </script>
 
 <style scoped>
@@ -87,9 +87,9 @@ a{
   max-height:550px;
   min-width:300px;
   color:#eee;
-  height: 40vh; 
+  height: 100vh; 
   min-height: 300px; 
-  max-height: 400px;
+  max-height: 700px;
 }
 .header:after{
   content:"";
@@ -101,27 +101,25 @@ a{
   z-index:-1;
  background: linear-gradient(to bottom, rgba(0,0,0,0.12) 40%,rgba(27,32,48,1) 100%);
 }
-.header:before{
-  content:"";
-  width:100%;
-  height:200%;
-  position:absolute;
-  top:0;
-  left:0;
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translateZ(0); backface-visibility: hidden;
-  scale:(1.0, 1.0);
-    transform: translateZ(0);
-  background:#1B2030 url(https://images.unsplash.com/photo-1571993142257-eae0b44cf0f1?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ) 50% 0 no-repeat;
-  background-size:100%;
-  background-attachment:fixed;
-  animation: grow 360s  linear 10ms infinite;
-  transition:all 0.4s ease-in-out;
-  z-index:-2
+.header:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  background: #1B2030 url(https://images.unsplash.com/photo-1571993142257-eae0b44cf0f1?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ) no-repeat center/cover;
+  background-attachment: fixed; 
+  animation: grow 360s linear 10ms infinite;
+  transition: all 0.4s ease-in-out;
+  z-index: -2;
 }
-.header a{
-  color:#eee
-}
+
+
 .menu{
   display:block;
   width:40px;
@@ -201,9 +199,7 @@ a{
   font-weight:600
 }
 
-.twtr{
-  margin-top:100px
-}.btn.twtr:after{content:"\1F426";padding-left:5px}
+
 
 button {
   display: flex;
@@ -217,7 +213,18 @@ button {
 .card{
   height: 25rem;
 }
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
 
+.col {
+  flex: 1;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
 .card .card-img-top {
   width: 100%;
   max-width: 200px; 

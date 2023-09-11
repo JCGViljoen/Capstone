@@ -19,6 +19,7 @@ export default createStore({
     msg: null,
     postData: null,
     orderItems: null,
+    searchQuery: '',
   },
   mutations: {
     setProducts(state, data) {
@@ -41,6 +42,9 @@ export default createStore({
     },
     setOrderItems(state, data) {
       state.orderItems = data;
+    },
+    setSearchQuery(state, query) {
+      state.searchQuery = query;
     },
   },
   actions: {
