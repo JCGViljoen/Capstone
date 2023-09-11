@@ -1,21 +1,32 @@
 <template>
-  <div class="login-page">
-    <div class="form">
-      <form class="register-form" v-if="!loginFormVisible">
-        <input type="text" placeholder="name" />
-        <input type="password" placeholder="password" />
-        <input type="text" placeholder="email address" />
-        <button @click="toggleLoginForm">create</button>
-        <p class="message">Already registered? <a href="#" @click="toggleLoginForm">Sign In</a></p>
-      </form>
-
-      <form class="login-form" v-else @submit.prevent="login">
-        <input type="text" placeholder="username" v-model="loginData.username" />
-        <input type="password" placeholder="password" v-model="loginData.password" />
-        <button type="submit">login</button>
-        <p class="message">Not registered? <a href="#" @click="toggleLoginForm">Create an account</a></p>
-      </form>
-    </div>
+  <div class="login">
+    <h2 class="active"> sign in </h2>
+      <form @submit.prevent="login">
+     
+      <input type="email" class="text" name="username" v-model="payload.email" required>
+       <span>username</span>
+  
+      <br>
+      
+      <br>
+  
+      <input type="password" class="text" name="password" v-model="payload.userPass">
+      <span>password</span>
+      <br>
+  
+      <input type="checkbox" id="checkbox-1-1" class="custom-checkbox" />
+      <label for="checkbox-1-1">Keep me Signed in</label>
+      
+      <button class="signin">
+        Sign In
+      </button>
+  
+  
+      <hr>
+  
+      <a href="#">Forgot Password?</a>
+    </form>
+  
   </div>
 </template>
 
@@ -23,120 +34,196 @@
 export default {
   data() {
     return {
-      loginFormVisible: false,
-      loginData: {
-        username: "",
-        password: "",
+      payload: {
+        userPass: "",
+        email: "",
       },
     };
   },
   methods: {
-    toggleLoginForm() {
-      this.loginFormVisible = !this.loginFormVisible;
-    },
+    
     login() {
+      this.$store.dispatch('LoginUser', this.payload)
       
+    },
+    beforeCreate() {
+      this.$store.dispatch('fetchUsers')
     },
   },
 };
 </script>
 <style scoped>
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+body,
+.signin {
+  background-color: #d3d3d3;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
 
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-.form {
+.login {
   position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  height: 560px;
+  width: 405px;
+  margin: auto;
+  padding: 60px 60px;
+  background: url(https://picsum.photos/id/1004/5616/3744) no-repeat   center center #505050;   
+  background-size: cover;
+  box-shadow: 0px 30px 60px -5px #000;
 }
-.form input {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
+
+form {
+  padding-top: 80px;
 }
-.form button {
-  font-family: "Roboto", sans-serif;
+
+.active {
+  border-bottom: 2px solid #1161ed;
+}
+
+.nonactive {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+h2 {
+  padding-left: 12px;
+  font-size: 22px;
   text-transform: uppercase;
+  padding-bottom: 5px;
+  letter-spacing: 2px;
+  display: inline-block;
+  font-weight: 100;
+}
+
+h2:first-child {
+  padding-left: 0px;
+}
+
+span {
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: 0.4; 
+  display: inline-block;
+  position: relative;
+  top: -65px;
+  transition: all 0.5s ease-in-out;
+}
+
+.text {
+  border: none;
+  width: 89%;
+  padding: 10px 20px;
+  display: block;
+  height: 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0);
+  overflow: hidden;
+  margin-top: 15px;
+  transition: all 0.5s ease-in-out;
+}
+
+.text:focus {
   outline: 0;
-  background: #4CAF50;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0);
+}
+
+.text:focus + span {
+  opacity: 0.6;
+}
+
+input[type="text"],
+input[type="password"] {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+}
+
+
+
+input {
+  display: inline-block;
+  padding-top: 20px;
   font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
+}
+
+h2,
+span,
+.custom-checkbox {
+  margin-left: 20px;
+}
+
+.custom-checkbox {
+  -webkit-appearance: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 2px;
+  display: inline-block;
+  position: relative;
+  top: 6px;
+}
+
+.custom-checkbox:checked {
+  background-color: rgba(17, 97, 237, 1);
+}
+
+.custom-checkbox:checked:after {
+  content: '\2714';
+  font-size: 10px;
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  color: #fff;
+}
+
+.custom-checkbox:focus {
+  outline: none;
+}
+
+label {
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+.signin {
+  background-color: #1161ed;
+  color: #FFF;
+  width: 100%;
+  padding: 10px 20px;
+  display: block;
+  height: 39px;
+  border-radius: 20px;
+  margin-top: 30px;
+  transition: all 0.5s ease-in-out;
+  border: none;
+  text-transform: uppercase;
+}
+
+.signin:hover {
+  background: #4082f5;
+  box-shadow: 0px 4px 35px -5px #4082f5;
   cursor: pointer;
 }
-.form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+
+.signin:focus {
+  outline: none;
 }
-.form .message {
-  margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}
-.form .message a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-.form .register-form {
-  display: none;
-}
-.container {
+
+hr {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  top: 85px;
   position: relative;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
 }
-.container:before, .container:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-.container .info {
-  margin: 50px auto;
+
+a {
   text-align: center;
-}
-.container .info h1 {
-  margin: 0 0 15px;
-  padding: 0;
-  font-size: 36px;
-  font-weight: 300;
-  color: #1a1a1a;
-}
-.container .info span {
-  color: #4d4d4d;
-  font-size: 12px;
-}
-.container .info span a {
-  color: #000000;
+  display: block;
+  top: 120px;
+  position: relative;
   text-decoration: none;
+  color: rgba(255, 255, 255, 0.2);
 }
-.container .info span .fa {
-  color: #EF3B3A;
-}
-body {
-  background: #76b852; /* fallback for old browsers */
-  background: rgb(141,194,111);
-  background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}
+
 </style>

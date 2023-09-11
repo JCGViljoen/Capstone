@@ -42,9 +42,12 @@ const routes = [
     path: '/single/:id?', 
     name: 'single',
     component: () => import ('../views/SingleProdView.vue')
+  },
+  {
+    path: '/edituser/:id?',
+    name: 'edituser',
+    component: () => import ('../views/EditUserView.vue')
   }
-
-
 ]
 
 const router = createRouter({

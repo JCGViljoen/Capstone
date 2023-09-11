@@ -68,9 +68,9 @@ export default createStore({
         console.error('Error fetching users:', error);
       }
     },
-    async editUsers({ commit }, userdata) {
+    async editUser({ commit }, userdata) {
       try {
-        const response = await axios.put(`${apiUrl}user/${userdata.id}`, userdata);
+        const response = await axios.put(`${apiUrl}user/${userdata.user_id}`, userdata);
         commit('updateUsers', response.data);
       } catch (error) {
         console.error('Error editing user:', error);
@@ -84,10 +84,10 @@ export default createStore({
         console.error('Error editing product:', error);
       }
     },
-    async addUser(context, userdata) {
+    async addUser({commit}, userdata) {
       const response = await axios.post(`${apiUrl}register`, userdata);
         location.reload();
-        context.commit('setAddUser', response.data);
+        commit('setAddUser', response.data);
     },
     async addProduct({ commit }, productdata) {
       try {
@@ -159,10 +159,10 @@ export default createStore({
         console.log(e);
       }
     },
-    async LoginUser(context, userLogin) {
+    async LoginUser(context, payload) {
       try {
         const { msg, token, result } = (
-          await axios.post(`${apiUrl}login`, userLogin)
+          await axios.post(`${apiUrl}login`, payload)
         ).data;
         if (result) {
           context.commit(`setUsers`, { result, msg });

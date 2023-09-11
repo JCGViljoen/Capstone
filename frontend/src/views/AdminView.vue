@@ -26,7 +26,7 @@
             <td>{{ product.price }}</td>
             <td>{{ product.stock_quantity }}</td>
             <td><img :src="product.product_image_url" :alt="product.prodName" style="max-width: 100px;"></td>
-            <td><button @click="editProduct(product)" class="btn btn-dark">Edit</button></td>
+            <td></td>
             <td><button @click="deleteProduct(product.product_id)" class="btn btn-dark">Delete</button></td>
           </tr>
         </tbody>
@@ -34,8 +34,7 @@
     </div>
 
     <h2 class="section-heading">Users</h2>
-    <button  class="btn btn-dark"><AddUser/></button>
-    <AddUser @user-added="handleUserAdded" class="btn btn-dark"/>
+    <AddUser @click="addUser" class="btn btn-dark"/>
     <div class="table-responsive" v-if="users">
       <table>
         <thead>
@@ -60,7 +59,11 @@
             <td><img :src="user.profile_image_url" :alt="user.firstName" style="max-width: 100px;"></td>
             <td>0{{ user.cellNum }}</td>
             <td>{{ user.userRole }}</td>
-            <td><button @click="editUser(user)" class="btn btn-dark">Edit</button></td>
+            <td><router-link
+              :to="{ name: 'edituser', params: { id: user.user_id } }"
+              class="del btn btn-info"
+              >Edit</router-link
+            ></td>
             <td><button @click="deleteUser(user.user_id)" class="btn btn-dark">Delete</button></td>
           </tr>
         </tbody>
@@ -83,9 +86,7 @@ export default {
     Spinner,
   },
   methods: {
-    async editProduct(product) {
-      
-    },
+    
     async addProduct(product_id){
       this.$store.dispatch("addProduct", product_id)
 
@@ -93,17 +94,13 @@ export default {
     async deleteProduct(product_id) {
       this.$store.dispatch("deleteProduct", product_id);
     },
-    // async addUser(user_id) {
-    //   this.$store.dispatch("addUser", user_id)
-    // },
+    async addUser(user_id) {
+      this.$store.dispatch("addUser", user_id)
+    },
     async deleteUser(user_id) {
       this.$store.dispatch("deleteUser", user_id);
     },
-    handleUserAdded(newUser) {
-      // Assuming that `newUser` is the user data added by the AddUser component
-      // You can add this new user to the users array in the state
-      this.$store.commit('addUser', newUser);
-    },
+    
   
   },
   computed: {
