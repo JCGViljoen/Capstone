@@ -17,12 +17,12 @@
             <router-link
               :to="{
                 name: 'single',
-                params: { id: products.product_id },
+                params: { id: product.product_id },
                 query: {
-                  name: products.prodName,
-                  description: products.prodDesc,
-                  img: products_image_url,
-                  price: products.price,
+                  name: product.prodName,
+                  description: product.prodDesc,
+                  img: product.product_image_url,
+                  price: product.price,
                 },
               }"
             >

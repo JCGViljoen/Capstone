@@ -1,6 +1,7 @@
 <template>
+  <center>
     <div class="card" style="width: 18rem;">
-      <img :src="$route.query.img" class="card-img-top" alt="...">
+      <img :src="$route.query.img" class="card-img-top" alt="..."/> 
       <div class="card-body">
         <h5 class="card-title">{{ $route.query.name }}</h5>
         <p class="card-text">
@@ -10,11 +11,13 @@
           <span> R{{ $route.query.price }}</span>
         </p>
         <div class="card-footer text-body-secondary">
-          <router-link to="/products" class="btn">⬅️Back</router-link>
+          <router-link to="/products" class="btn">Back to products</router-link>
           <br /><br />
         </div>
       </div>
     </div>
+  </center>
+    
   </template>
   
   <script>
@@ -27,5 +30,7 @@
     background-color: black;
     color: white;
   }
+
+  
   </style>
   

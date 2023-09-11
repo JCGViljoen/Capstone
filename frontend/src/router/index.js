@@ -39,7 +39,7 @@ const routes = [
     component: () => import ('../views/CheckoutView.vue')
   },
   {
-    path: '/single', 
+    path: '/single/:id?', 
     name: 'single',
     component: () => import ('../views/SingleProdView.vue')
   }
