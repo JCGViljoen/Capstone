@@ -6,6 +6,14 @@
         <h6>Find your tools for your next project!</h6>
       </div>
     </section>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2"   aria-label="Search"  type="text"
+              v-model="searchQuery"
+              @input="updateSearchQuery"
+              placeholder="Search for products">
+
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
     <div class="product" v-if="products">
       <div class="sort-buttons">
         <button @click="sortByPrice">Sort by Price</button>
@@ -33,7 +41,7 @@
               <button class="btn">View Product</button>
             </router-link>
             <ul>
-              <li v-for="product in products" :key="product.id">
+              <li>
                 {{ product.prodName }} - Price: R{{ product.price }}
                 <button @click="addToCart(product)">Add to Cart</button>
               </li>
@@ -57,6 +65,14 @@ export default {
     products() {
       return this.$store.state.products;
     },
+    searchQuery: {
+    get() {
+      return this.$store.state.searchQuery;
+    },
+    set(value) {
+      this.$store.commit('setSearchQuery', value);
+    },
+  },
     
     ...mapState(['searchQuery']),
     filteredProducts() {
@@ -92,6 +108,9 @@ export default {
     addToCart(product) {
       this.$store.commit('cart/addToCart', product);
     },
+    updateSearchQuery() {
+    // The computed property handles updating the searchQuery in the Vuex store
+  },
   },
   
   components: {
@@ -102,6 +121,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 body, html {

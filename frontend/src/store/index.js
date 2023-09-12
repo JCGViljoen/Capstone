@@ -26,9 +26,7 @@ export default createStore({
     setProducts(state, data) {
       state.products = data;
     },
-    setProducts(state, data) {
-      state.products = data
-    },
+  
     setUsers(state, data) {
       state.users = data;
     },
@@ -47,9 +45,10 @@ export default createStore({
     setSearchQuery(state, query) {
       state.searchQuery = query;
     },
-    addToCart(state, product){
-      state.cartItems.push(product);
+    addToCart(state, product_id){
+      state.cartItems.push(product_id);
     },
+    
     removeFromCart(state,product_id) {
       statusbar.cartItems =- state.cartItems.filter(item => item.id !== product_id)
     },

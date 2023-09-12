@@ -1,9 +1,9 @@
 <template>
     <div>
         <h2>Your Shopping Cart</h2>
-        <ul>
+        <ul v-if="product">
           <li v-for="item in cartItems" :key="item.id">
-            {{ item.name }} - Price: ${{ item.price }} - Quantity:
+            {{ item.prodName }} - Price: ${{ item.price }} - Quantity:
             <input type="number" v-model="item.quantity" @input="updateQuantity(item)">
             <button @click="removeFromCart(item.id)">Remove</button>
           </li>
