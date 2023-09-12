@@ -156,7 +156,18 @@ export default createStore({
           }, 1000);
         });
       
+    }, 
+    addToCart({ commit }, product) {
+      commit('addToCart', product);
     },
+    removeFromCart({ commit }, product_id) {
+      commit('removeFromCart', product_id);
+    },
+    updateQuantity({ commit }, { product_id, quantity }) {
+      commit('updateQuantity', { product_id, quantity });
+    },
+                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 
     // register
     async userAdd(context, content) {
@@ -223,7 +234,7 @@ export default createStore({
       return state.searchResults;
     },
     cartTotal (state) {
-      return state.cartItems.reduce((total, item) => total + item.price * item.quantity,)
+      return state.cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
     }
   },
   modules: {},

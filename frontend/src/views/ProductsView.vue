@@ -106,8 +106,9 @@ export default {
     },
     
     addToCart(product) {
-      this.$store.commit('cart/addToCart', product);
+      this.$store.dispatch('addToCart', product);
     },
+  
     updateSearchQuery() {
     // The computed property handles updating the searchQuery in the Vuex store
   },

@@ -73,7 +73,6 @@ footer > div {
   padding: 10px;
 }
 
-/* Responsive styles */
 @media (max-width: 300px) {
   footer {
     flex-direction: column;

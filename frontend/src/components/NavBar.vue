@@ -58,6 +58,7 @@
   .container-fluid {
     background-color: #000;
     position: sticky;
+    height: 20vh;
   }
   
   .nav-link {

@@ -62,7 +62,6 @@
     </section>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -139,8 +138,59 @@ export default {
 
 .image {
   margin: 10px 0;
+  
+}
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 100%; /* Ensure the gallery fits the screen */
 }
 
+.image {
+  margin: 10px 0;
+  flex: 1; /* Allow images to grow to fill available space */
+  max-width: calc(33.33% - 20px); /* Set maximum width for each image */
+  max-height: 300px; /* Set maximum height for each image */
+}
+
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-enter,
+.fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@media (max-width: 300px) {
+  .hero {
+    padding: 50px 0;
+  }
+
+  .about {
+    padding: 30px 0;
+  }
+
+  .team-members {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-member-card {
+    max-width: 80%;
+  }
+
+  .gallery {
+    padding: 30px 0;
+  }
+}
+
+/* Animation for the gallery section */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.6s ease, transform 0.6s ease;
