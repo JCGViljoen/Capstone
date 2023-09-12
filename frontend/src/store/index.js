@@ -163,55 +163,60 @@ export default createStore({
       try {
         const { msg } = (await axios.post(`${apiUrl}user`, content)).data;
         if (msg) {
-          sweet({
-            title: "User Add",
+          // Show a success SweetAlert
+          sweet.fire({
+            title: 'User Add',
             text: msg,
-            icon: "success",
+            icon: 'success',
             timer: 5000,
           });
-          context.dispatch("fetchUsers");
-          router.push({ name: "login" });
+          // Fetch users and navigate to the login page
+          await context.dispatch('fetchUsers');
+          router.push({ name: 'login' });
         } else {
-          sweet({
-            title: "Error",
-            text: msg,
-            icon: "error",
+          // Show an error SweetAlert if registration failed
+          sweet.fire({
+            title: 'Error',
+            text: msg || 'An error occurred during user registration.',
+            icon: 'error',
             timer: 5000,
           });
         }
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        console.error('Error during user registration:', error);
       }
     },
+  
     async LoginUser(context, payload) {
       try {
         const { msg, token, result } = (
           await axios.post(`${apiUrl}LoginUser`, payload)
         ).data;
         if (result) {
-          context.commit(`setUsers`, { result, msg });
-          cookies.set("LegitUser", { token, msg, result });
-          AuthenticateUser.applyToken(token);
-          sweet({
+          // Show a success SweetAlert for successful login
+          sweet.fire({
             title: msg,
-            text: `Welcome back ${result?.firstName}
-            ${result?.lastName}`,
-            icon: "success",
+            text: `Welcome back ${result?.firstName} ${result?.lastName}`,
+            icon: 'success',
             timer: 5000,
           });
-          router.push({ name: "home" });
+          // Set cookies, apply token, and navigate to the home page
+          cookies.set('LegitUser', { token, msg, result });
+          AuthenticateUser.applyToken(token);
+          router.push({ name: 'home' });
         } else {
-          sweet({
-            title: "Error",
-            text: msg,
-            icon: "error",
+          // Show an error SweetAlert if login failed
+          sweet.fire({
+            title: 'Error',
+            text: msg || 'Login failed. Please check your credentials.',
+            icon: 'error',
             timer: 5000,
           });
         }
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        console.error('Error during login:', error);
       }
-    }
+    },
   },
   getters: {
     filteredProducts(state) {

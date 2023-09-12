@@ -1,39 +1,89 @@
 <template>
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Sign Up</h1>
-    <form @submit.prevent="addUser">
-            
-              <legend>Your Basic Info</legend>
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Sign Up</h1>
+      <form @submit.prevent="addUser">
+        <fieldset>
+          <legend>Your Basic Info</legend>
 
-              <label for="user_name">Profile Picture</label>
-              <input type="text" id="profile_image_url" name="profile_image_url" v-model="content.profile_image_url" width="48" height="48" placeholder="https://your-image-url">
-    
-    
-              <label for="user_name">Name:</label>
-              <input type="text" id="user_name" name="user_name" v-model="content.firstName" required placeholder="John" >
-    
-              <label for="surname">Surname:</label>
-              <input type="text" id="surname" name="user_lastname" v-model="content.lastName" required placeholder="Doe" >
-    
-              <label for="user_email">Email:</label>
-              <input type="email" id="user_email" name="user_email" v-model="content.email" required placeholder="Johndoe@email.com">
-    
-              <label for="cellNum">Cell Number:</label>
-              <input type="text" id="cellNum" name="cellNum" v-model="content.cellNum" required placeholder="0123456789">
-    
-              <label for="userPass">Password:</label>
-              <input type="password" id="userPass" name="userPass" v-model="content.userPass" required placeholder="freewilly123">
-             
-    
-            <button type="submit">Sign Up</button>
-    </form>
-            <p>Already have an account? <router-link to="/login">Sign in</router-link></p>
-          
-        </div>
-      </div>
+          <label for="profile_image_url">Profile Picture:</label>
+          <input
+            type="text"
+            id="profile_image_url"
+            name="profile_image_url"
+            accept="image/*"
+            v-model="content.profile_image_url"
+          />
 
+          <label for="user_name">Name:</label>
+          <input
+            type="text"
+            id="user_name"
+            name="user_name"
+            v-model="content.firstName"
+            required
+            placeholder="John"
+          />
+
+          <label for="surname">Surname:</label>
+          <input
+            type="text"
+            id="surname"
+            name="user_lastname"
+            v-model="content.lastName"
+            required
+            placeholder="Doe"
+          />
+
+          <label for="user_email">Email:</label>
+          <input
+            type="email"
+            id="user_email"
+            name="user_email"
+            v-model="content.email"
+            required
+            placeholder="johndoe@email.com"
+          />
+
+          <label for="cellNum">Cell Number:</label>
+          <input
+            type="tel"
+            id="cellNum"
+            name="cellNum"
+            v-model="content.cellNum"
+            required
+            placeholder="0123456789"
+          />
+
+          <label for="userPass">Password:</label>
+          <input
+            type="password"
+            id="userPass"
+            name="userPass"
+            v-model="content.userPass"
+            required
+            placeholder="freewilly123"
+          />
+
+          <label for="confirmPass">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmPass"
+            name="confirmPass"
+            v-model="content.confirmPass"
+            required
+            placeholder="freewilly123"
+          />
+        </fieldset>
+
+        <button type="submit">Sign Up</button>
+      </form>
+      <p>Already have an account? <router-link to="/login">Sign in</router-link></p>
+    </div>
+  </div>
 </template>
+
+
 
 <script>
     export default {
