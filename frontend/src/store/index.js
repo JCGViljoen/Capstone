@@ -20,6 +20,7 @@ export default createStore({
     postData: null,
     orderItems: null,
     searchQuery: '',
+    cartItems: [],
   },
   mutations: {
     setProducts(state, data) {
@@ -45,6 +46,12 @@ export default createStore({
     },
     setSearchQuery(state, query) {
       state.searchQuery = query;
+    },
+    addToCart(state, product){
+      state.cartItems.push(product);
+    },
+    removeFromCart(state,product_id) {
+      statusbar.cartItems =- state.cartItems.filter(item => item.id !== product_id)
     },
   },
   actions: {
@@ -211,6 +218,9 @@ export default createStore({
     filteredProducts(state) {
       return state.searchResults;
     },
+    cartTotal (state) {
+      return state.cartItems.reduce((total, item) => total + item.price * item.quantity,)
+    }
   },
   modules: {},
 });

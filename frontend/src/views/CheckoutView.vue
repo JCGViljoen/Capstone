@@ -56,9 +56,7 @@
           // Add any other relevant order details
         };
   
-        // Send the order to the server or perform payment processing here
   
-        // Clear the form fields after successful submission
         this.customerName = '';
         this.customerEmail = '';
         this.shippingAddress = '';
@@ -66,21 +64,18 @@
         this.expiryDate = '';
         this.cvv = '';
   
-        // Optionally, you can redirect the user to an order confirmation page
-        // this.$router.push('/order-confirmation');
+        this.$router.push('/order-confirmation');
       },
     },
   };
   </script>
   
   <style scoped>
-/* Checkout form container */
 form {
   max-width: 400px;
   margin: 0 auto;
 }
 
-/* Form fields */
 .form-group {
   margin-bottom: 20px;
 }

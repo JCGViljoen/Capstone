@@ -32,6 +32,12 @@
             >
               <button class="btn">View Product</button>
             </router-link>
+            <ul>
+              <li v-for="product in products" :key="product.id">
+                {{ product.prodName }} - Price: R{{ product.price }}
+                <button @click="addToCart(product)">Add to Cart</button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -82,7 +88,12 @@ export default {
     sortByName() {
       this.sortType = 'name';
     },
+    
+    addToCart(product) {
+      this.$store.commit('cart/addToCart', product);
+    },
   },
+  
   components: {
     Spinner,
   },

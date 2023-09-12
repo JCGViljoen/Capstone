@@ -39,18 +39,18 @@
       <div class="col mb-3">
         <h5>Support</h5>
         <!-- Add a contact form here -->
-        <form>
+        <form action="https://formspree.io/f/mpzglage" method="POST">
           <div class="mb-3">
             <label for="name" class="form-label text-white">Name:</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            <input type="name" name="name" class="form-control" id="name" placeholder="Enter your name">
           </div>
           <div class="mb-3">
             <label for="emailSupport" class="form-label text-white">Email address:</label>
-            <input type="email" class="form-control" id="emailSupport" placeholder="Enter your email">
+            <input type="email" name="email" class="form-control" id="emailSupport" placeholder="Enter your email">
           </div>
           <div class="mb-3">
             <label for="message" class="form-label text-white">Message:</label>
-            <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+            <textarea name="message" class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send Message</button>
         </form>

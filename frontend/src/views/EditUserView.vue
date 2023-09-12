@@ -3,14 +3,14 @@
     <h2>Edit user</h2>
     <center>
       <form @submit.prevent="editConfirm">
-        <input v-model="editUser.user_id" type="text" placeholder="UserID" class="form-control" /><br />
-        <input v-model="editUser.firstName" type="text" placeholder="firstName" class="form-control" /><br />
-        <input v-model="editUser.lastName" type="text" placeholder="lastName" class="form-control" /><br />
-        <input v-model="editUser.email" type="text" placeholder="email" class="form-control" /><br />
+        <input v-model="editUser.user_id" type="text" placeholder="UserID" class="form-control" readonly /><br />
+        <input v-model="editUser.firstName" type="text" placeholder="First Name" class="form-control" required /><br />
+        <input v-model="editUser.lastName" type="text" placeholder="Last Name" class="form-control" required /><br />
+        <input v-model="editUser.email" type="email" placeholder="Email" class="form-control" required /><br />
         <input v-model="editUser.profile_image_url" type="text" placeholder="Profile image" class="form-control" /><br />
-        <input v-model="editUser.userPass" type="text" placeholder="userPass" class="form-control" /><br />
-        <input v-model="editUser.userRole" type="text" placeholder="userRole" class="form-control" /><br />
-        <input v-model="editUser.cellNum" type="text" placeholder="cell number" class="form-control" /><br />
+        <input v-model="editUser.userPass" type="password" placeholder="Password" class="form-control" /><br />
+        <input v-model="editUser.userRole" type="text" placeholder="User Role" class="form-control" /><br />
+        <input v-model="editUser.cellNum" type="tel" placeholder="Cell Number" class="form-control" /><br />
         <div>
           <button type="submit" class="btn btn-success">Save</button>
           <router-link to="/admin" class="btn btn-info">Back</router-link>
@@ -22,11 +22,11 @@
 
 <script>
 export default {
-  props: ["id"], 
+  props: ["id"],
   data() {
     return {
       editUser: {
-        user_id: this.id, 
+        user_id: this.id,
         firstName: "",
         lastName: "",
         email: "",
@@ -38,7 +38,14 @@ export default {
   },
   methods: {
     editConfirm() {
-      this.$store.dispatch("ConfirmEditUser", this.editUser)
+      // Validation example (you can customize this based on your requirements)
+      if (!this.editUser.firstName || !this.editUser.lastName || !this.editUser.email) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      this.$store
+        .dispatch("ConfirmEditUser", this.editUser)
         .then(() => {
           alert("User updated");
         })
@@ -53,7 +60,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('fetchUsers');
+    this.$store.dispatch("fetchUsers");
   },
 };
 </script>
