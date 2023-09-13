@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <section class="hero">
       <div class="content">
         <h1>Welcome to Digistop</h1>
@@ -68,7 +68,6 @@ export default {
     return {
       images: [
         { src: 'https://i.postimg.cc/J7SzLrGW/pexels-bruno-massao-2873486.jpg' },
-        { src: 'https://i.postimg.cc/rFqYzWdG/pexels-brett-sayles-4031037.jpg' },
         { src: 'https://i.postimg.cc/7YBX6RrD/pexels-gustavo-fring-4173318.jpg' },
         { src: 'https://i.postimg.cc/Xv9wwHmr/pexels-google-deepmind-18069240.jpg' },
       ],
@@ -91,6 +90,13 @@ export default {
 .about {
   background-color: #f8f9fa;
   padding: 50px 0;
+}
+.page{
+  background-image: url('https://i.postimg.cc/rFqYzWdG/pexels-brett-sayles-4031037.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 /* Team Section */

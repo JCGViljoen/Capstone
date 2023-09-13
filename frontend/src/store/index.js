@@ -45,15 +45,37 @@ export default createStore({
     setSearchQuery(state, query) {
       state.searchQuery = query;
     },
-    addToCart(state, product_id){
-      state.cartItems.push(product_id);
+    addToCart(state, product) {
+      const existingProduct = state.cartItems.find(item => item.id === product.id);
+
+      if (existingProduct) {
+        // If the product is already in the cart, increase its quantity
+        existingProduct.quantity++;
+      } else {
+        // If the product is not in the cart, add it with a quantity of 1
+        state.cartItems.push({ ...product, quantity: 1 });
+      }
     },
-    
-    removeFromCart(state,product_id) {
-      statusbar.cartItems =- state.cartItems.filter(item => item.id !== product_id)
+
+    // Remove product from cart
+    removeFromCart(state, product_id) {
+      state.cartItems = state.cartItems.filter(item => item.id !== product_id);
+    },
+
+    // Update quantity of a product in the cart
+    updateQuantity(state, { product_id, quantity }) {
+      const productToUpdate = state.cartItems.find(item => item.id === product_id);
+      if (productToUpdate) {
+        productToUpdate.quantity = quantity;
+      }
     },
   },
   actions: {
+    async addToCart({ commit }, product) {
+      console.log("added to cart");
+      commit('addToCart', product);
+    },
+  
     async fetchProducts({ commit }) {
       try {
         const response = await axios.get(`${apiUrl}products`);
@@ -157,12 +179,7 @@ export default createStore({
         });
       
     }, 
-    addToCart({ commit }, product) {
-      commit('addToCart', product);
-    },
-    removeFromCart({ commit }, product_id) {
-      commit('removeFromCart', product_id);
-    },
+   
     updateQuantity({ commit }, { product_id, quantity }) {
       commit('updateQuantity', { product_id, quantity });
     },

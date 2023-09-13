@@ -6,12 +6,15 @@
         <h6>Find your tools for your next project!</h6>
       </div>
     </section>
-    <form class="d-flex" role="search">
-      <input class="form-control me-2"   aria-label="Search"  type="text"
-              v-model="searchQuery"
-              @input="updateSearchQuery"
-              placeholder="Search for products">
-
+    <form class="d-flex" role="search" @submit.prevent="searchProducts">
+      <input
+        class="form-control me-2"
+        aria-label="Search"
+        type="text"
+        v-model="searchQuery"
+        @input="updateSearchQuery"
+        placeholder="Search for products"
+      />
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
     <div class="product" v-if="products">
@@ -66,14 +69,13 @@ export default {
       return this.$store.state.products;
     },
     searchQuery: {
-    get() {
-      return this.$store.state.searchQuery;
+      get() {
+        return this.$store.state.searchQuery;
+      },
+      set(value) {
+        this.$store.commit('setSearchQuery', value);
+      },
     },
-    set(value) {
-      this.$store.commit('setSearchQuery', value);
-    },
-  },
-    
     ...mapState(['searchQuery']),
     filteredProducts() {
       const query = this.searchQuery.toLowerCase();
@@ -81,15 +83,13 @@ export default {
         return product.prodName.toLowerCase().includes(query);
       });
     },
-    
-    
     sortedProducts() {
       if (this.sortType === 'price') {
-        return [...this.products].sort((a, b) => a.price - b.price);
+        return [...this.filteredProducts].sort((a, b) => a.price - b.price);
       } else if (this.sortType === 'name') {
-        return [...this.products].sort((a, b) => a.prodName.localeCompare(b.prodName));
+        return [...this.filteredProducts].sort((a, b) => a.prodName.localeCompare(b.prodName));
       }
-      return this.products;
+      return this.filteredProducts;
     },
   },
   data() {
@@ -104,60 +104,58 @@ export default {
     sortByName() {
       this.sortType = 'name';
     },
-    
     addToCart(product) {
-      this.$store.dispatch('addToCart', product);
-    },
-  
+    this.$store.dispatch('addToCart', product);
+  },
     updateSearchQuery() {
-    // The computed property handles updating the searchQuery in the Vuex store
+      console.log('Search Query:', this.searchQuery);
+      this.$store.commit('setSearchQuery', this.searchQuery);
+    },
+    searchProducts() {
+    this.$store.commit('setSearchQuery', this.searchQuery);
   },
   },
-  
   components: {
     Spinner,
   },
   mounted() {
-    this.$store.dispatch("fetchProducts");
+    this.$store.dispatch('fetchProducts');
   },
 };
 </script>
 
-
 <style scoped>
-body, html {
-  margin: 0;
-  padding: 0;
-}
 
 .hero {
   background-color: #000;
-  margin-top: 0;
-  padding-top: 0;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
 
 .heading {
-  color: #fff;
+  margin-bottom: 20px;
 }
 
 .product {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   padding: 20px;
 }
 
 .card {
   border: 1px solid #e1e1e1;
   border-radius: 5px;
-  transition: transform 0.2s;
-  width: 18rem;
+  transition: transform 0.3s ease; /* Added card animation */
+  width: 20rem;
   margin: 10px;
   flex: 1;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.1); /* Scale the card on hover */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
 }
 
 .card-title {
@@ -169,19 +167,11 @@ body, html {
   height: auto;
 }
 
-@media (max-width: 768px) {
-  .product {
-    justify-content: space-around;
-  }
-}
 
-@media (max-width: 576px) {
-  .product {
-    padding: 10px;
-  }
 
-  .card {
-    width: 100%;
-  }
-}
+  
+
+
+
+
 </style>

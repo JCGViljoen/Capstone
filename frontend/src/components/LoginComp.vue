@@ -44,6 +44,7 @@ export default {
     
     login() {
       this.$store.dispatch('LoginUser', this.payload)
+      console.log("logged in ");
       
     },
     beforeCreate() {
@@ -57,7 +58,7 @@ body,
 .signin {
   background-color: #d3d3d3;
   font-family: 'Montserrat', sans-serif;
-  color: #fff;
+  color: #000;
   font-size: 14px;
   letter-spacing: 1px;
 }
@@ -137,7 +138,7 @@ span {
 input[type="text"],
 input[type="password"] {
   font-family: 'Montserrat', sans-serif;
-  color: #fff;
+  color: #000;
 }
 
 
@@ -147,6 +148,7 @@ input {
   padding-top: 20px;
   font-size: 14px;
 }
+
 
 h2,
 span,

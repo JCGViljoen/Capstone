@@ -29,7 +29,7 @@
           <input
             type="text"
             id="surname"
-            name="user_lastname"
+            name="lastname"
             v-model="content.lastName"
             required
             placeholder="Doe"
