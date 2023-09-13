@@ -23,39 +23,26 @@
         </section>
         
 
-    <h1>Just Arrived</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card">
-          <img src="https://i.postimg.cc/HLtFFf33/51r-F0ezg-PHL.jpg" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://i.postimg.cc/d0nS5Gtx/71cj5c-Nm7-ZL-SY500.jpg" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-      </div>
-      
+        <h1>Just Arrived</h1>
+
+<!-- Carousel Container -->
+<div class="carousel-container">
+  <div class="carousel">
+    <!-- Slide 1 -->
+    <div class="carousel-slide">
+      <img src="https://i.postimg.cc/HLtFFf33/51r-F0ezg-PHL.jpg" alt="">
     </div>
-    
+    <!-- Slide 2 -->
+    <div class="carousel-slide">
+      <img src="https://i.postimg.cc/d0nS5Gtx/71cj5c-Nm7-ZL-SY500.jpg" alt="">
+    </div>
+    <!-- Slide 3 -->
+    <div class="carousel-slide">
+      <img src="https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" alt="">
+    </div>
   </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -239,11 +226,40 @@ button {
   max-width: 200px; 
   height: auto;
 }
+
+.carousel-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.2s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.carousel img {
+  max-width: 100%;
+  height: auto;
+}
 @media (max-width: 600px) {
   .header {
     height: 50vh; 
     min-height: 250px; 
     max-height: 350px; 
+  }
+}
+@media (max-width: 300px) {
+  .carousel-container {
+    max-width: 100%; 
+    margin: 0; 
   }
 }
 

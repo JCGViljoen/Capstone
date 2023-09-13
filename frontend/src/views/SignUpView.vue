@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h1>Sign Up</h1>
-      <form @submit.prevent="addUser">
+      <form @submit.prevent="register">
         <fieldset>
           <legend>Your Basic Info</legend>
 
@@ -86,31 +86,30 @@
 
 
 <script>
-    export default {
-        data() {
-      return {
-        content: {
-          firstName: "",
-          lastName: "",
-          email: "",
-          userPass: "",
-          profile_image_url: "",
-          cellNum: "",
-          userRole: "",
-        },
-      };
-    },
-    methods: {
-      addUser() {
-        this.$store.dispatch('addUser', this.content);
-      },
-    },
-  };
-        
-    
+import { mapActions } from 'vuex';
 
-   
+export default {
+  data() {
+    return {
+      content: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        userPass: '',
+        profile_image_url: '',
+        cellNum: '',
+        userRole: '',
+      },
+    };
+  },
+  methods: {
+    register() {
+            this.$store.dispatch('register', this.content)
+        }
+  },
+};
 </script>
+
 
 <style scoped>
 *, *:before, *:after {

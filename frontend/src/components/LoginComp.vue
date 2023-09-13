@@ -45,6 +45,7 @@ export default {
     login() {
       this.$store.dispatch('LoginUser', this.payload)
       console.log("logged in ");
+      alert("you are logged in")
       
     },
     beforeCreate() {

@@ -56,6 +56,9 @@ export default createStore({
         state.cartItems.push({ ...product, quantity: 1 });
       }
     },
+    setToken(state, token) {
+      state.token = token;
+    },
 
     // Remove product from cart
     removeFromCart(state, product_id) {
@@ -116,11 +119,13 @@ export default createStore({
         console.error('Error editing product:', error);
       }
     },
-    async addUser({commit}, userdata) {
-      const response = await axios.post(`${apiUrl}register`, userdata);
-        location.reload();
-        commit('setAddUser', response.data);
-    },
+    // async addUser({commit}, userdata) {
+    //   const response = await axios.post(`${apiUrl}register`, userdata);
+    //     location.reload();
+    //     commit('setAddUser', response.data);
+    // },
+    
+    
     async addProduct({ commit }, productdata) {
       try {
         const response = await axios.post(`${apiUrl}product`, productdata);
@@ -186,66 +191,67 @@ export default createStore({
                                                                                                                                    
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 
-    // register
-    async userAdd(context, content) {
+    //register
+    async register(context, content) {
       try {
-        const { msg } = (await axios.post(`${apiUrl}user`, content)).data;
+        const { msg } = (await axios.post(`${apiUrl}users`, content)).data;
         if (msg) {
-          // Show a success SweetAlert
-          sweet.fire({
-            title: 'User Add',
+          sweet({
+            title: "Registration",
             text: msg,
-            icon: 'success',
-            timer: 5000,
+            icon: "success",
+            timer: 4000,
           });
-          // Fetch users and navigate to the login page
-          await context.dispatch('fetchUsers');
-          router.push({ name: 'login' });
+          context.dispatch("fetchUsers");
+          router.push({ name: "login" });
         } else {
-          // Show an error SweetAlert if registration failed
-          sweet.fire({
-            title: 'Error',
-            text: msg || 'An error occurred during user registration.',
-            icon: 'error',
-            timer: 5000,
+          sweet({
+            title: "Error",
+            text: msg,
+            icon: "error",
+            timer: 4000
           });
         }
-      } catch (error) {
-        console.error('Error during user registration:', error);
+      } catch (e) {
+        context.commit("setMsg", "An error has occured");
       }
     },
-  
-    async LoginUser(context, payload) {
+    //login
+    async login(context, content) {
       try {
-        const { msg, token, result } = (
-          await axios.post(`${apiUrl}LoginUser`, payload)
+        const { msg, token, results } = (
+          await axios.post(`${apiUrl}login`, content)
         ).data;
-        if (result) {
-          // Show a success SweetAlert for successful login
-          sweet.fire({
-            title: msg,
-            text: `Welcome back ${result?.firstName} ${result?.lastName}`,
-            icon: 'success',
-            timer: 5000,
-          });
-          // Set cookies, apply token, and navigate to the home page
-          cookies.set('LegitUser', { token, msg, result });
+        if (results) {
+          context.commit("setUser", { results, msg });
+          localStorage.setItem("user", JSON.stringify(results))
+          cookies.set("user", { msg, token, results });
           AuthenticateUser.applyToken(token);
-          router.push({ name: 'home' });
+          sweet({
+            title: msg,
+            text: `Welcome back ${results?.firstName} ${results?.lastName}`,
+            icon: "success",
+            timer: 4000,
+          });
+          router.push({ name: "home" });
         } else {
-          // Show an error SweetAlert if login failed
-          sweet.fire({
-            title: 'Error',
-            text: msg || 'Login failed. Please check your credentials.',
-            icon: 'error',
-            timer: 5000,
+          sweet({
+            title: "Error",
+            text: msg,
+            icon: "error",
+            timer: 4000,
           });
         }
-      } catch (error) {
-        console.error('Error during login:', error);
+      } catch (e) {
+        context.commit("setMsg", "An error has occured");
       }
     },
-  },
+    LogOut(context){
+      context.commit('setUser')
+      cookies.remove("user");
+
+    },
+    },
   getters: {
     filteredProducts(state) {
       return state.searchResults;
