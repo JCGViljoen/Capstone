@@ -1,223 +1,127 @@
 <template>
   <div class="main">
-    <body>
-      <div class="login-box">
-  <h2>Login</h2>
-  <form @submit.prevent="login">
-    <div class="user-box">
-      <input type="email" name="" v-model="payload.email" required>
-      <label>Email</label>
+    <div class="login-box">
+      <h2>Login</h2>
+      <form @submit.prevent="login">
+        <div class="user-box">
+          <input type="email" name="email" v-model="payload.email" required>
+          <label>Email</label>
+        </div>
+        <div class="user-box">
+          <input type="password" name="password" v-model="payload.userPass" required>
+          <label>Password</label>
+        </div>
+        <button class="btn btn-primary" type="submit">
+          Login
+        </button>
+        <p class="message">Not registered? <a href="#"><router-link to="/register">Create an account</router-link></a></p>
+      </form>
     </div>
-    <div class="user-box">
-      <input type="password" name="" v-model="payload.userPass" required>
-      <label>Password</label>
-    </div>
-     <button class="btn btn-primary" type="submit">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      Submit
-   </button>
-    <p class="message">Not registered? <a href="#"><router-link to="/register">Create an account</router-link></a></p>
-  </form>
-</div>
-    </body>
   </div>
 </template>
+
 <script>
 export default {
   data() {
-        return {
-            payload: {
-                email: "",
-                userPass: ""
-            }
-        }
-    },
+    return {
+      payload: {
+        email: "",
+        userPass: ""
+      }
+    };
+  },
   methods: {
     login() {
-        this.$store.dispatch('LoginUser', this.payload)
-      }
+      this.$store.dispatch('LoginUser', this.payload)
+    }
   },
   beforeCreate() {
-      this.$store.dispatch('fetchUsers')
-    }
+    this.$store.dispatch('fetchUsers')
+  }
 };
 </script>
+
 <style scoped>
-body,
-.signin {
-  background-color: #d3d3d3;
+body, .main {
+  background-color: #f2f2f2;
   font-family: 'Montserrat', sans-serif;
-  color: #000;
-  font-size: 14px;
-  letter-spacing: 1px;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
 }
 
-.login {
-  position: relative;
-  height: 560px;
-  width: 405px;
-  margin: auto;
-  padding: 60px 60px;
-  background: url(https://picsum.photos/id/1004/5616/3744) no-repeat   center center #fff;   
-  background-size: cover;
-  box-shadow: 0px 30px 60px -5px #000;
-}
-
-form {
-  padding-top: 80px;
-}
-
-.active {
-  border-bottom: 2px solid #1161ed;
-}
-
-.nonactive {
-  color: rgba(255, 255, 255, 0.2);
+.login-box {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
 }
 
 h2 {
-  padding-left: 12px;
-  font-size: 22px;
+  margin-bottom: 20px;
+  font-size: 24px;
   text-transform: uppercase;
-  padding-bottom: 5px;
   letter-spacing: 2px;
-  display: inline-block;
-  font-weight: 100;
 }
 
-h2:first-child {
-  padding-left: 0px;
-}
-
-span {
-  text-transform: uppercase;
-  font-size: 12px;
-  opacity: 0.4; 
-  display: inline-block;
+.user-box {
   position: relative;
-  top: -65px;
-  transition: all 0.5s ease-in-out;
+  margin-bottom: 30px;
 }
 
-.text {
-  border: none;
-  width: 89%;
-  padding: 10px 20px;
-  display: block;
-  height: 15px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0);
-  overflow: hidden;
-  margin-top: 15px;
-  transition: all 0.5s ease-in-out;
-}
-
-.text:focus {
-  outline: 0;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0);
-}
-
-.text:focus + span {
-  opacity: 0.6;
-}
-
-input[type="text"],
-input[type="password"] {
-  font-family: 'Montserrat', sans-serif;
-  color: #000;
-}
-
-
-
-input {
-  display: inline-block;
-  padding-top: 20px;
-  font-size: 14px;
-}
-
-
-h2,
-span,
-.custom-checkbox {
-  margin-left: 20px;
-}
-
-.custom-checkbox {
-  -webkit-appearance: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 8px;
-  border-radius: 2px;
-  display: inline-block;
-  position: relative;
-  top: 6px;
-}
-
-.custom-checkbox:checked {
-  background-color: rgba(17, 97, 237, 1);
-}
-
-.custom-checkbox:checked:after {
-  content: '\2714';
-  font-size: 10px;
-  position: absolute;
-  top: 1px;
-  left: 4px;
-  color: #fff;
-}
-
-.custom-checkbox:focus {
-  outline: none;
-}
-
-label {
-  display: inline-block;
-  padding-top: 10px;
-  padding-left: 5px;
-}
-
-.signin {
-  background-color: #1161ed;
-  color: #FFF;
+.user-box input {
   width: 100%;
-  padding: 10px 20px;
-  display: block;
-  height: 39px;
-  border-radius: 20px;
-  margin-top: 30px;
-  transition: all 0.5s ease-in-out;
+  padding: 10px 0;
   border: none;
-  text-transform: uppercase;
-}
-
-.signin:hover {
-  background: #4082f5;
-  box-shadow: 0px 4px 35px -5px #4082f5;
-  cursor: pointer;
-}
-
-.signin:focus {
+  border-bottom: 2px solid #333;
   outline: none;
+  font-size: 16px;
 }
 
-hr {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  top: 85px;
-  position: relative;
+.user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  font-size: 16px;
+  transition: 0.2s ease all;
+}
+
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s ease background-color;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.message {
+  font-size: 14px;
+  margin-top: 20px;
 }
 
 a {
-  text-align: center;
-  display: block;
-  top: 120px;
-  position: relative;
+  color: #333;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.2);
 }
-
 </style>
