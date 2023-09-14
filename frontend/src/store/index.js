@@ -217,15 +217,15 @@ export default createStore({
       }
     },
     //login
-    async login(context, content) {
+    async LoginUser(context, payload) {
       try {
         const { msg, token, results } = (
-          await axios.post(`${apiUrl}login`, content)
+          await axios.post(`${apiUrl}login`, payload)
         ).data;
         if (results) {
           context.commit("setUser", { results, msg });
           localStorage.setItem("user", JSON.stringify(results))
-          cookies.set("user", { msg, token, results });
+          cookies.set("LegitUser", { msg, token, results });
           AuthenticateUser.applyToken(token);
           sweet({
             title: msg,
@@ -239,7 +239,7 @@ export default createStore({
             title: "Error",
             text: msg,
             icon: "error",
-            timer: 4000,
+            timer: 1000,
           });
         }
       } catch (e) {
@@ -248,8 +248,8 @@ export default createStore({
     },
     LogOut(context){
       context.commit('setUser')
-      cookies.remove("user");
-
+      cookies.remove("Legituser");
+      localStorage.removeItem("user")
     },
     },
   getters: {

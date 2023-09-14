@@ -1,57 +1,48 @@
 <template>
-  <div class="login">
-    <h2 class="active"> sign in </h2>
-      <form @submit.prevent="login">
-     
-      <input type="email" class="text" name="username" v-model="payload.email" required>
-       <span>username</span>
-  
-      <br>
-      
-      <br>
-  
-      <input type="password" class="text" name="password" v-model="payload.userPass">
-      <span>password</span>
-      <br>
-  
-      <input type="checkbox" id="checkbox-1-1" class="custom-checkbox" />
-      <label for="checkbox-1-1">Keep me Signed in</label>
-      
-      <button class="signin">
-        Sign In
-      </button>
-  
-  
-      <hr>
-  
-      <a href="#">Forgot Password?</a>
-    </form>
-  
+  <div class="main">
+    <body>
+      <div class="login-box">
+  <h2>Login</h2>
+  <form @submit.prevent="login">
+    <div class="user-box">
+      <input type="email" name="" v-model="payload.email" required>
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="" v-model="payload.userPass" required>
+      <label>Password</label>
+    </div>
+     <button class="btn btn-primary" type="submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+   </button>
+    <p class="message">Not registered? <a href="#"><router-link to="/register">Create an account</router-link></a></p>
+  </form>
+</div>
+    </body>
   </div>
 </template>
-
 <script>
 export default {
   data() {
-    return {
-      payload: {
-        userPass: "",
-        email: "",
-      },
-    };
-  },
+        return {
+            payload: {
+                email: "",
+                userPass: ""
+            }
+        }
+    },
   methods: {
-    
     login() {
-      this.$store.dispatch('LoginUser', this.payload)
-      console.log("logged in ");
-      alert("you are logged in")
-      
-    },
-    beforeCreate() {
-      this.$store.dispatch('fetchUsers')
-    },
+        this.$store.dispatch('LoginUser', this.payload)
+      }
   },
+  beforeCreate() {
+      this.$store.dispatch('fetchUsers')
+    }
 };
 </script>
 <style scoped>
