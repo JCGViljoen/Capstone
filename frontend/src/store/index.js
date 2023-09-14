@@ -216,20 +216,22 @@ export default createStore({
         context.commit("setMsg", "An error has occured");
       }
     },
+
     //login
     async LoginUser(context, payload) {
       try {
-        const { msg, token, results } = (
+        const { msg, token, result } = (
           await axios.post(`${apiUrl}login`, payload)
         ).data;
-        if (results) {
-          context.commit("setUser", { results, msg });
-          localStorage.setItem("user", JSON.stringify(results))
-          cookies.set("LegitUser", { msg, token, results });
-          AuthenticateUser.applyToken(token);
+        if (result) {
+          context.commit(`setUsers`, { result, msg });
+          localStorage.setItem("user", JSON.stringify(result));
+          cookies.set("LegitUser", { token, msg, result });
+          authUser.applyToken(token);
           sweet({
             title: msg,
-            text: `Welcome back ${results?.firstName} ${results?.lastName}`,
+            text: `Welcome back ${result?.firstName}
+            ${result?.lastName}`,
             icon: "success",
             timer: 4000,
           });
@@ -239,19 +241,19 @@ export default createStore({
             title: "Error",
             text: msg,
             icon: "error",
-            timer: 1000,
+            timer: 4000,
           });
         }
       } catch (e) {
-        context.commit("setMsg", "An error has occured");
+        console.log(e);
       }
     },
-    LogOut(context){
-      context.commit('setUser')
-      cookies.remove("Legituser");
-      localStorage.removeItem("user")
+    Logout(context) {
+      context.commit("setUser");
+      cookies.remove("LegitUser");
+      localStorage.removeItem("user");
     },
-    },
+  },
   getters: {
     filteredProducts(state) {
       return state.searchResults;
