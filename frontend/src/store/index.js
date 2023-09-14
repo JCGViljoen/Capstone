@@ -14,6 +14,7 @@ export default createStore({
     products: null,
     product: null,
     users: null,
+    user:null,
     orders: null,
     token: null,
     msg: null,
@@ -29,6 +30,9 @@ export default createStore({
   
     setUsers(state, data) {
       state.users = data;
+    },
+    setUser(state, datas) {
+      state.user = datas;
     },
     updateProducts(state, data) {
       state.products = data;
@@ -192,9 +196,9 @@ export default createStore({
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 
     //register
-    async register(context, content) {
+    async register(context, payload) {
       try {
-        const { msg } = (await axios.post(`${apiUrl}users`, content)).data;
+        const { msg } = (await axios.post(`${apiUrl}users`, payload)).data;
         if (msg) {
           sweet({
             title: "Registration",
@@ -224,8 +228,8 @@ export default createStore({
           await axios.post(`${apiUrl}login`, payload)
         ).data;
         if (result) {
-          context.commit(`setUsers`, { result, msg });
           localStorage.setItem("user", JSON.stringify(result));
+          context.commit(`setUser`, { result, msg });
           cookies.set("LegitUser", { token, msg, result });
           authUser.applyToken(token);
           sweet({

@@ -29,7 +29,6 @@ export default {
   methods: {
    login() {
      this.$store.dispatch("LoginUser", this.payload);
-    
   }
 },
 beforeCreate () {
