@@ -6,7 +6,7 @@ function createToken(user) {
       emailAdd: user.emailAdd,
       userPass: user.userPass,
     },
-    process.env.SECRET_KEY,
+    process.env.secret_keygit,
     {
       expiresIn: "1h",
     }
