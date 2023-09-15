@@ -1,20 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div class="login">
-    <h2>Login</h2>
-    <form @submit.prevent="login">
-      <div class="user-box">
-        <input type="email" v-model="payload.email" required>
-        <label>Email</label>
-      </div>
-      <div class="user-box">
-        <input type="password" v-model="payload.userPass" required>
-        <label>Password</label>
-      </div>
-      <button type="submit">Login</button>
-    </form>
-    <p class="message">Not registered? <router-link to="/register">Create an account</router-link></p>
-=======
   <div class="main">
     <div class="login-box">
       <h2>Login</h2>
@@ -33,7 +17,6 @@
         <p class="message">Not registered? <a href="#"><router-link to="/register">Create an account</router-link></a></p>
       </form>
     </div>
->>>>>>> 8051e18f6d44ca5d356440c5e172cbbc379547ab
   </div>
 </template>
 
@@ -46,17 +29,6 @@ export default {
         userPass: ""
       }
     };
-<<<<<<< HEAD
-  },
-  methods: {
-   login() {
-     this.$store.dispatch("LoginUser", this.payload);
-  }
-},
-beforeCreate () {
-this.$store.dispatch('fetchUsers')
-}
-=======
   },
   methods: {
     login() {
@@ -66,14 +38,10 @@ this.$store.dispatch('fetchUsers')
   beforeCreate() {
     this.$store.dispatch('fetchUsers')
   }
->>>>>>> 8051e18f6d44ca5d356440c5e172cbbc379547ab
 };
 </script>
 
 <style scoped>
-<<<<<<< HEAD
-/* Your CSS styles for the login component */
-=======
 body, .main {
   background-color: #f2f2f2;
   font-family: 'Montserrat', sans-serif;
@@ -156,5 +124,4 @@ a {
   color: #333;
   text-decoration: none;
 }
->>>>>>> 8051e18f6d44ca5d356440c5e172cbbc379547ab
 </style>
