@@ -1,5 +1,5 @@
 const { sign, verify } = require("jsonwebtoken");
-require("dotenv").config();
+
 function createToken(user) {
   return sign(
     {
