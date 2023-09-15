@@ -47,28 +47,35 @@
       </div>
     </section>
     <section class="gallery">
-      <div class="content">
-        <h2>Our Journey</h2>
-        <div class="image-gallery">
-          <transition-group name="fade" tag="div">
-            <div v-for="(image, index) in images" :key="index" class="image">
-              <img :src="image.src" alt="Gallery Image" />
-            </div>
-          </transition-group>
-        </div>
-      </div>
-    </section>
+    <div class="content">
+      <h2>Our Journey</h2>
+      <swiper :slides-per-view="3" :space-between="20" @swiper="onSwiper" @slideChange="onSlideChange">
+        <swiper-slide v-for="(image, index) in images" :key="index">
+          <div class="swiper-slide-content">
+            <img :src="image.src" alt="Gallery Image" class="swiper-slide-image" />
+          </div>
+        </swiper-slide>
+      </swiper>
+    </div>
+  </section>
   </div>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+
 export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   data() {
     return {
       images: [
         { src: 'https://i.postimg.cc/J7SzLrGW/pexels-bruno-massao-2873486.jpg' },
         { src: 'https://i.postimg.cc/7YBX6RrD/pexels-gustavo-fring-4173318.jpg' },
-        // { src: 'https://i.postimg.cc/Xv9wwHmr/pexels-google-deepmind-18069240.jpg' },
+        { src: 'https://i.postimg.cc/Xv9wwHmr/pexels-google-deepmind-18069240.jpg' },
       ],
     };
   },
@@ -121,10 +128,45 @@ export default {
   }
 }
 
-.image-gallery {
+.gallery .content {
+  text-align: center;
+}
+
+.swiper-slide-content {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  height: 200px; 
+}
+
+.swiper-slide-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; 
+}
+
+.swiper-slide {
+  width: 33.33%;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-slide {
+    width: 50%;
+  }
+
+  .swiper-slide-image {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .swiper-slide {
+    width: 100%;
+  }
 }
 
 .image {
