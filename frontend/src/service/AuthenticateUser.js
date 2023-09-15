@@ -5,7 +5,7 @@ function applyToken(token){
         Authorization: `${token}`
     }
     }
-}
+};
 export default {
-    applyToken
-}
+    applyToken,
+};

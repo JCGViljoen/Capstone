@@ -35,6 +35,11 @@
               Admin
             </router-link>
           </li>
+          <li>
+            <router-link class="nav-link" to="/profile">
+              Profile
+            </router-link>
+          </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/signup">
               Sign Up
@@ -104,6 +109,7 @@ nav {
   position: relative;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
+  
 }
 
 .nav-link:hover {
@@ -125,7 +131,6 @@ nav {
   background-color: red; /* Change the hamburger icon color to white */
 }
 
-/* Make the navbar responsive to 300px */
 @media screen and (max-width: 300px) {
   .navbar-nav {
     flex-direction: column;
@@ -139,4 +144,12 @@ nav {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 991px) {
+  .nav-link {
+    color: black; 
+  }
+}
+
+
 </style>

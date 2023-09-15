@@ -231,7 +231,7 @@ export default createStore({
           localStorage.setItem("user", JSON.stringify(result));
           context.commit(`setUser`, { result, msg });
           cookies.set("LegitUser", { token, msg, result });
-          authUser.applyToken(token);
+          AuthenticateUser.applyToken(token);
           sweet({
             title: msg,
             text: `Welcome back ${result?.firstName}
