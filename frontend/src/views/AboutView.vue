@@ -25,26 +25,24 @@
       <div class="content">
         <h2>Meet the Team</h2>
         <div class="team-members">
-          <!-- Team member cards go here -->
           <div class="team-member-card">
             <div class="card">
-              <img src="team_member_1.jpg" class="card-img-top" alt="Team Member 1" />
+              <img src="https://i.postimg.cc/ht27jMZN/images-2.jpg" class="card-img-top smaller-image" alt="Team Member 1" />
               <div class="card-body">
-                <h5 class="card-title">Team Member 1</h5>
-                <p class="card-text">Team member's role and brief description.</p>
+                <h5 class="card-title">Aminah Khan</h5>
+                <p class="card-text">I want to make sure that we have a strong foot in whatever the digital world has in store for us.</p>
               </div>
             </div>
           </div>
           <div class="team-member-card">
             <div class="card">
-              <img src="team_member_2.jpg" class="card-img-top" alt="Team Member 2" />
+              <img src="https://i.postimg.cc/QMMxy3by/how-to-draw-a-Person.webp" class="card-img-top smaller-image" alt="Team Member 2" />
               <div class="card-body">
-                <h5 class="card-title">Team Member 2</h5>
-                <p class="card-text">Team member's role and brief description.</p>
+                <h5 class="card-title">Steven Isaacs</h5>
+                <p class="card-text">I understand that the digital world is something we can't run from, so let's take it on head first.</p>
               </div>
             </div>
           </div>
-          <!-- Add more team member cards as needed -->
         </div>
       </div>
     </section>
@@ -76,8 +74,8 @@ export default {
   },
 };
 </script>
+
 <style scoped>
-/* Common styles for different screen sizes */
 .hero {
   background-color: #000;
   color: #fff;
@@ -100,9 +98,9 @@ export default {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #1c1c1c; 
 }
 
-/* Responsive styles */
 @media (max-width: 300px) {
   .hero {
     padding: 30px 0;
@@ -123,7 +121,6 @@ export default {
   }
 }
 
-/* Improved image layout */
 .image-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -137,7 +134,6 @@ export default {
   max-height: 300px;
 }
 
-/* Improved text styling */
 .card-title {
   font-size: 1.25rem;
   color: #333;
@@ -147,5 +143,10 @@ export default {
 .card-text {
   font-size: 1rem;
   color: #666;
+}
+
+.smaller-image {
+  max-width: 100px;
+  max-height: 100px;
 }
 </style>
