@@ -18,6 +18,7 @@
     </section>
 
     <h1>Just Arrived</h1>
+    <h6>SCROLL THROUGH</h6>
 
     <!-- Swiper Carousel -->
     <swiper :slides-per-view="3" :space-between="50" @swiper="onSwiper" @slideChange="onSlideChange">
@@ -43,9 +44,12 @@ export default {
         { id: 1, image: "https://i.postimg.cc/HLtFFf33/51r-F0ezg-PHL.jpg" },
         { id: 2, image: "https://i.postimg.cc/d0nS5Gtx/71cj5c-Nm7-ZL-SY500.jpg" },
         { id: 3, image: "https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" },
-        { id: 4, image: "https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" },
-        { id: 5, image: "https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" },
-        { id: 6, image: "https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" },
+        { id: 4, image: "https://i.postimg.cc/KYSxQfBW/download.jpg" },
+        { id: 5, image: "https://i.postimg.cc/133y07FH/share-default-14fadd993578b9916f855cebafb71e62.png" },
+        { id: 6, image: "https://i.postimg.cc/Y2N75BfR/unnamed.webp" },
+        { id: 7, image: "https://i.postimg.cc/Dw6dH08h/71-Vo5-Zbv1o-L-AC-UY327-FMwebp-QL65.webp" },
+
+        
       ],
     };
   },
@@ -74,6 +78,10 @@ html, body {
 
 a {
   text-decoration: none;
+}
+.responsive-image{
+  width:20rem;
+  height: auto;
 }
 
 .header {
