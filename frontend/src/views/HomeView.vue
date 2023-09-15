@@ -1,55 +1,73 @@
 <template>
-  
-    <div class="home">
-      <h1 class="h1">
-
-      </h1>
-       <div class="header">
-          <div class="sides"> <a href="#" class="menu"> </a></div>
-          <div class="info">
-          <h1>Let's Make our Mark in the Metaverse</h1>
-            <div class="meta">
-              <div class="sides">
-                <center> <a href="#" class="logo">Check us out</a></center>
-              </div><br>
-              <a href="https://twitter.com/nodws" target="_b"></a>
-            </div>
+  <div class="home">
+    <h1 class="h1"></h1>
+    <div class="header">
+      <div class="sides"> <a href="#" class="menu"> </a></div>
+      <div class="info">
+        <h1>Let's Make our Mark in the Metaverse</h1>
+        <div class="meta">
+          <div class="sides">
+            <center> <a href="#" class="logo">Check us out</a></center>
           </div>
+          <br>
+          <a href="https://twitter.com/nodws" target="_b"></a>
         </div>
-        <section class="content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nisl turpis, porttitor et finibus id, viverra a metus. Praesent non ante sed orci posuere varius quis sit amet dui. Cras molestie magna orci, id gravida dolor molestie in. Duis sollicitudin turpis quis tortor egestas, ut ultrices nisl elementum. Vestibulum sed ipsum eget nulla laoreet cursus in ac sem. Integer a suscipit justo, quis aliquam sapien. Maecenas et tellus nibh. Vivamus tincidunt eros id commodo pellentesque.</p>
-          
-          
-        </section>
-        
+      </div>
+    </div>
+    <section class="content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nisl turpis, porttitor et finibus id, viverra a
+        metus. Praesent non ante sed orci posuere varius quis sit amet dui. Cras molestie magna orci, id gravida dolor
+        molestie in. Duis sollicitudin turpis quis tortor egestas, ut ultrices nisl elementum. Vestibulum sed ipsum
+        eget nulla laoreet cursus in ac sem. Integer a suscipit justo, quis aliquam sapien. Maecenas et tellus nibh.
+        Vivamus tincidunt eros id commodo pellentesque.</p>
+    </section>
 
-        <h1>Just Arrived</h1>
+    <h1>Just Arrived</h1>
 
-<!-- Carousel Container -->
-<div class="carousel-container">
-  <div class="carousel">
-    <!-- Slide 1 -->
-    <div class="carousel-slide">
-      <img src="https://i.postimg.cc/HLtFFf33/51r-F0ezg-PHL.jpg" alt="">
-    </div>
-    <!-- Slide 2 -->
-    <div class="carousel-slide">
-      <img src="https://i.postimg.cc/d0nS5Gtx/71cj5c-Nm7-ZL-SY500.jpg" alt="">
-    </div>
-    <!-- Slide 3 -->
-    <div class="carousel-slide">
-      <img src="https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" alt="">
-    </div>
+    <!-- Swiper Carousel -->
+    <swiper :slides-per-view="3" :space-between="50" @swiper="onSwiper" @slideChange="onSlideChange">
+      <swiper-slide v-for="slide in slides" :key="slide.id">
+        <img :src="slide.image" alt="Slide Image">
+      </swiper-slide>
+    </swiper>
   </div>
-</div>
-</div>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
 
-
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  data() {
+    return {
+      slides: [
+        { id: 1, image: "https://i.postimg.cc/HLtFFf33/51r-F0ezg-PHL.jpg" },
+        { id: 2, image: "https://i.postimg.cc/d0nS5Gtx/71cj5c-Nm7-ZL-SY500.jpg" },
+        { id: 3, image: "https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" },
+        { id: 4, image: "https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" },
+        { id: 5, image: "https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" },
+        { id: 6, image: "https://i.postimg.cc/HLsCWYrF/61m6w-Di1-SYL-SX522.jpg" },
+      ],
+    };
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log('slide change');
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+    };
+  },
+};
 </script>
-
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i');
@@ -247,6 +265,26 @@ button {
 
 .carousel img {
   max-width: 100%;
+  height: auto;
+}
+.card {
+  height: auto; 
+  width: calc(33.33% - 20px); /* Set a percentage width with some margin */
+  margin: 10px; /* Add margin to create spacing between cards */
+  display: inline-block; /* Display cards in a row */
+
+  @media (max-width: 600px) {
+    width: calc(50% - 20px); /* Adjust width for screens narrower than 600px */
+  }
+
+  @media (max-width: 300px) {
+    width: calc(100% - 20px); /* Adjust width for screens narrower than 300px */
+  }
+}
+
+.card .card-img-top {
+  width: 100%;
+  max-width: none; /* Remove max-width for image responsiveness */
   height: auto;
 }
 @media (max-width: 600px) {

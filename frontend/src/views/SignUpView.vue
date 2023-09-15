@@ -6,74 +6,88 @@
         <fieldset>
           <legend>Your Basic Info</legend>
 
-          <label for="profile_image_url">Profile Picture:</label>
-          <input
-            type="text"
-            id="profile_image_url"
-            name="profile_image_url"
-            accept="image/*"
-            v-model="content.profile_image_url"
-          />
+          <div class="form-group">
+            <label for="profile_image_url">Profile Picture:</label>
+            <input
+              type="text"
+              id="profile_image_url"
+              name="profile_image_url"
+              accept="image/*"
+              v-model="content.profile_image_url"
+            />
+          </div>
 
-          <label for="user_name">Name:</label>
-          <input
-            type="text"
-            id="user_name"
-            name="user_name"
-            v-model="content.firstName"
-            required
-            placeholder="John"
-          />
+          <div class="form-group">
+            <label for="user_name">Name:</label>
+            <input
+              type="text"
+              id="user_name"
+              name="user_name"
+              v-model="content.firstName"
+              required
+              placeholder="John"
+            />
+          </div>
 
-          <label for="surname">Surname:</label>
-          <input
-            type="text"
-            id="surname"
-            name="lastname"
-            v-model="content.lastName"
-            required
-            placeholder="Doe"
-          />
+          <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input
+              type="text"
+              id="surname"
+              name="lastname"
+              v-model="content.lastName"
+              required
+              placeholder="Doe"
+            />
+          </div>
 
-          <label for="user_email">Email:</label>
-          <input
-            type="email"
-            id="user_email"
-            name="user_email"
-            v-model="content.email"
-            required
-            placeholder="johndoe@email.com"
-          />
+          <div class="form-group">
+            <label for="user_email">Email:</label>
+            <input
+              type="email"
+              id="user_email"
+              name="user_email"
+              v-model="content.email"
+              required
+              placeholder="johndoe@email.com"
+            />
+          </div>
 
-          <label for="cellNum">Cell Number:</label>
-          <input
-            type="tel"
-            id="cellNum"
-            name="cellNum"
-            v-model="content.cellNum"
-            required
-            placeholder="0123456789"
-          />
+          <div class="form-group">
+            <label for="cellNum">Cell Number:</label>
+            <input
+              type="tel"
+              id="cellNum"
+              name="cellNum"
+              v-model="content.cellNum"
+              required
+              placeholder="0123456789"
+            />
+          </div>
 
-          <label for="userPass">Password:</label>
-          <input
-            type="password"
-            id="userPass"
-            name="userPass"
-            v-model="content.userPass"
-            required
-            placeholder="freewilly123"
-          />
+          <div class="form-group">
+            <label for="userPass">Password:</label>
+            <input
+              type="password"
+              id="userPass"
+              name="userPass"
+              v-model="content.userPass"
+              required
+              placeholder="freewilly123"
+            />
+          </div>
 
-          <label for="confirmPass">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirmPass"
-            name="confirmPass"
-            v-model="content.confirmPass"
-            required
-            placeholder="freewilly123"
-          />
+          <div class="form-group">
+            <label for="confirmPass">Confirm Password:</label>
+            <input
+              type="password"
+              id="confirmPass"
+              name="confirmPass"
+              v-model="content.confirmPass"
+              required
+              placeholder="freewilly123"
+            />
+          </div>
         </fieldset>
 
         <button type="submit">Sign Up</button>
@@ -82,8 +96,6 @@
     </div>
   </div>
 </template>
-
-
 
 <script>
 
@@ -103,110 +115,89 @@ export default {
   },
   methods: {
     register() {
-            this.$store.dispatch('register', this.content)
-        }
+      // Call your registration logic here
+      // Example: this.$store.dispatch('register', this.content)
+    }
   },
 };
 </script>
 
-
 <style scoped>
-*, *:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Nunito', sans-serif;
-    color: #384047;
-  }
-  
-  form {
-    max-width: 300px;
-    margin: 10px auto;
-    padding: 10px 20px;
-    background: #f4f7f8;
-    border-radius: 8px;
-  }
-  
-  h1 {
-    margin: 0 0 30px 0;
-    text-align: center;
-  }
-  
-  input[type="text"],
-  input[type="password"],
-  input[type="date"],
-  input[type="datetime"],
-  input[type="email"],
-  input[type="number"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="time"],
-  input[type="url"],
-  textarea,
-  select {
-    background: rgba(255,255,255,0.1);
-    border: none;
-    font-size: 16px;
-    height: auto;
-    margin: 0;
-    outline: 0;
-    padding: 15px;
-    width: 100%;
-    background-color: #e8eeef;
-    color: #8a97a0;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    margin-bottom: 30px;
-  }
-  
-  
-  
-  button {
-    padding: 19px 39px 18px 39px;
-    color: #FFF;
-    background-color: #4bc970;
-    font-size: 18px;
-    text-align: center;
-    font-style: normal;
-    border-radius: 5px;
-    width: 100%;
-    border: 1px solid #3ac162;
-    border-width: 1px 1px 3px;
-    box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
-    margin-bottom: 10px;
-  }
-  
-  fieldset {
-    margin-bottom: 30px;
-    border: none;
-  }
-  
-  legend {
-    font-size: 1.4em;
-    margin-bottom: 10px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-  }
-  
-  label.light {
-    font-weight: 300;
-    display: inline;
-  }
-  
-  
-  
-  @media screen and (min-width: 480px) {
-  
-    form {
-      max-width: 480px;
-    }
-  
-  }
-  
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
 
+.col-md-12 {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  padding: 20px;
+  box-shadow: #000 5px 5px 3px;
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 18px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: red;
+  box-shadow: #000 3px 6px 5px 10px;
+}
+
+p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+a {
+  color: #4bc970;
+  text-decoration: none;
+}
 </style>

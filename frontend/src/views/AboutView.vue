@@ -62,6 +62,7 @@
     </section>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -69,117 +70,46 @@ export default {
       images: [
         { src: 'https://i.postimg.cc/J7SzLrGW/pexels-bruno-massao-2873486.jpg' },
         { src: 'https://i.postimg.cc/7YBX6RrD/pexels-gustavo-fring-4173318.jpg' },
-        { src: 'https://i.postimg.cc/Xv9wwHmr/pexels-google-deepmind-18069240.jpg' },
+        // { src: 'https://i.postimg.cc/Xv9wwHmr/pexels-google-deepmind-18069240.jpg' },
       ],
     };
   },
 };
 </script>
-
 <style scoped>
-
-
+/* Common styles for different screen sizes */
 .hero {
   background-color: #000;
   color: #fff;
   text-align: center;
-  padding: 100px 0;
+}
+.about .content{
+  color: #fff
 }
 
-/* About Section */
-.about {
-  background-color: #f8f9fa;
+.about .content ul li{
+  text-decoration: none;
+}
+
+.about, .team, .gallery {
   padding: 50px 0;
 }
-.page{
+
+.page {
   background-image: url('https://i.postimg.cc/rFqYzWdG/pexels-brett-sayles-4031037.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
-/* Team Section */
-.team {
-  padding: 50px 0;
-}
-
-.team-members {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.team-member-card {
-  max-width: 300px;
-  margin: 10px;
-  transition: all 0.3s ease;
-}
-
-.card {
-  border: 1px solid #e1e1e1;
-  border-radius: 5px;
-}
-
-.card-title {
-  font-size: 1.25rem;
-}
-
-.card-text {
-  font-size: 1rem;
-  color: #666;
-}
-
-/* Gallery Section */
-.gallery {
-  background-color: #f8f9fa;
-  padding: 50px 0;
-}
-
-.image-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.image {
-  margin: 10px 0;
-  
-}
-.image-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 100%; /* Ensure the gallery fits the screen */
-}
-
-.image {
-  margin: 10px 0;
-  flex: 1; /* Allow images to grow to fill available space */
-  max-width: calc(33.33% - 20px); /* Set maximum width for each image */
-  max-height: 300px; /* Set maximum height for each image */
-}
-
-
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-enter,
-.fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
+/* Responsive styles */
 @media (max-width: 300px) {
   .hero {
-    padding: 50px 0;
+    padding: 30px 0;
   }
 
-  .about {
-    padding: 30px 0;
+  .about, .team, .gallery {
+    padding: 20px 0;
   }
 
   .team-members {
@@ -189,22 +119,33 @@ export default {
 
   .team-member-card {
     max-width: 80%;
-  }
-
-  .gallery {
-    padding: 30px 0;
+    margin: 10px 0;
   }
 }
 
-/* Animation for the gallery section */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* Improved image layout */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.fade-enter,
-.fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0;
-  transform: translateY(30px);
+.image {
+  margin: 10px;
+  flex: 1;
+  max-width: calc(50% - 20px);
+  max-height: 300px;
+}
+
+/* Improved text styling */
+.card-title {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #666;
 }
 </style>
