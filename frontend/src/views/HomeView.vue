@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <div class="header">
-      <div class="sides"><a href="#" class="menu"></a></div>
       <div class="info">
         <h1>Discover the Best Digital Products</h1>
         <div class="meta">
@@ -9,7 +8,6 @@
             <center><a href="#" class="logo">Check us out</a></center>
           </div>
           <br>
-          <a href="https://twitter.com/nodws" target="_blank"></a>
         </div>
       </div>
     </div>
@@ -299,6 +297,34 @@ button {
 @media screen and (max-width: 991px) {
   .logo {
     display: none;
+  }
+}
+.swiper-slide-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Set your desired height for the images */
+}
+
+.swiper-slide-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; 
+}
+
+.swiper-slide {
+  width: 33.33%;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-slide {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .swiper-slide {
+    width: 100%;
   }
 }
 </style>
