@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h1>Sign Up</h1>
-      <form @submit.prevent="register">
+      <form @submit.prevent="submitForm">
         <fieldset>
           <legend>Your Basic Info</legend>
 
@@ -13,7 +13,7 @@
               id="profile_image_url"
               name="profile_image_url"
               accept="image/*"
-              v-model="content.profile_image_url"
+              v-model="profile_image_url"
             />
           </div>
 
@@ -23,7 +23,7 @@
               type="text"
               id="user_name"
               name="user_name"
-              v-model="content.firstName"
+              v-model="firstName"
               required
               placeholder="John"
             />
@@ -35,7 +35,7 @@
               type="text"
               id="surname"
               name="lastname"
-              v-model="content.lastName"
+              v-model="lastName"
               required
               placeholder="Doe"
             />
@@ -47,7 +47,7 @@
               type="email"
               id="user_email"
               name="user_email"
-              v-model="content.email"
+              v-model="email"
               required
               placeholder="johndoe@email.com"
             />
@@ -59,7 +59,7 @@
               type="tel"
               id="cellNum"
               name="cellNum"
-              v-model="content.cellNum"
+              v-model="cellNum"
               required
               placeholder="0123456789"
             />
@@ -71,7 +71,7 @@
               type="password"
               id="userPass"
               name="userPass"
-              v-model="content.userPass"
+              v-model="userPass"
               required
               placeholder="freewilly123"
             />
@@ -83,7 +83,7 @@
               type="password"
               id="confirmPass"
               name="confirmPass"
-              v-model="content.confirmPass"
+              v-model="confirmPass"
               required
               placeholder="freewilly123"
             />
@@ -103,22 +103,38 @@ import { mapActions } from 'vuex';
 export default {
   data() {
     return {
-      content: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        userPass: '',
-        profile_image_url: '',
-        cellNum: '',
-        userRole: '',
-      },
+      firstName: '',
+      lastName: '',
+      email: '',
+      userPass: '',
+      profile_image_url: '',
+      cellNum: '',
+      userRole: '',
+      confirmPass: '',
     };
   },
   methods: {
-    register() {
-      // Call your registration logic here
-      // Example: this.$store.dispatch('register', this.content)
-    }
+    ...mapActions(['registerUser']),
+
+    async submitForm() {
+      if (this.userPass !== this.confirmPass) {
+        return;
+      }
+
+      const userData = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        userPass: this.userPass,
+        profile_image_url: this.profile_image_url,
+        cellNum: this.cellNum,
+        userRole: this.userRole,
+      };
+
+      this.registerUser(userData);
+
+      this.$router.push({ name: 'login' });
+    },
   },
 };
 </script>

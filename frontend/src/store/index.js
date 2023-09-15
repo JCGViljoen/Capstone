@@ -123,11 +123,16 @@ export default createStore({
         console.error('Error editing product:', error);
       }
     },
-    // async addUser({commit}, userdata) {
-    //   const response = await axios.post(`${apiUrl}register`, userdata);
-    //     location.reload();
-    //     commit('setAddUser', response.data);
-    // },
+    async addUser({ commit }, user) {
+      try {
+        const response = await axios.post(`${apiUrl}register`, user);
+        location.reload();
+        commit('setUsers', response.data);
+      } catch (error) {
+        console.error('Error adding user:', error);
+      }
+    },
+    
     
     
     async addProduct({ commit }, productdata) {
@@ -212,7 +217,7 @@ export default createStore({
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 
     //register
-    async register(context, payload) {
+    async registerUser(context, payload) {
       try {
         const { msg } = (await axios.post(`${apiUrl}users`, payload)).data;
         if (msg) {
