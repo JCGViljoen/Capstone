@@ -5,7 +5,7 @@
         <a href="home" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
         </a>
-        <p class="text-white">DIGI-STOP © 2023</p>
+        <p class="text-black">DIGI-STOP © 2023</p>
       </div>
       <div class="col mb-3">
         <h5><strong>Newsletter Signup</strong></h5>
