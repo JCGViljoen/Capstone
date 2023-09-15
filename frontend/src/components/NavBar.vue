@@ -36,7 +36,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="nav-link" to="/profile">
+            <router-link class="nav-link" to="/user/:id">
               Profile
             </router-link>
           </li>
@@ -147,7 +147,8 @@ nav {
 
 @media screen and (max-width: 991px) {
   .nav-link {
-    color: black; 
+    color: red;
+    text-decoration: underline seashell; 
   }
 }
 

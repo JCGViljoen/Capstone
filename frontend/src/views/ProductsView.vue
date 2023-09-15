@@ -2,21 +2,22 @@
   <div>
     <section class="hero">
       <div class="heading">
-        <h1>Tools</h1>
-        <h6>Find your tools for your next project!</h6>
+        <h1>What we Have</h1>
+        <h6>Find the tools for your next project!</h6>
+        <h6>Or your next Weekend at home</h6>
       </div>
     </section>
-    <form class="d-flex" role="search" @submit.prevent="searchProducts">
+    <form class="d-flex" @submit.prevent="searchProducts">
       <input
         class="form-control me-2"
         aria-label="Search"
         type="text"
         v-model="searchQuery"
-        @input="updateSearchQuery"
         placeholder="Search for products"
       />
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
+      
     <div class="product" v-if="products">
       <div class="sort-buttons">
         <button @click="sortByPrice">Sort by Price</button>
@@ -112,8 +113,8 @@ export default {
       this.$store.commit('setSearchQuery', this.searchQuery);
     },
     searchProducts() {
-    this.$store.commit('setSearchQuery', this.searchQuery);
-  },
+      this.$store.dispatch('filterProducts', this.searchQuery);
+    },
   },
   components: {
     Spinner,
@@ -147,15 +148,15 @@ export default {
 .card {
   border: 1px solid #e1e1e1;
   border-radius: 5px;
-  transition: transform 0.3s ease; /* Added card animation */
+  transition: transform 0.3s ease; 
   width: 20rem;
   margin: 10px;
   flex: 1;
 }
 
 .card:hover {
-  transform: scale(1.1); /* Scale the card on hover */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+  transform: scale(1.1); 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
 }
 
 .card-title {
@@ -165,6 +166,15 @@ export default {
 .card-img-top {
   max-width: 100%;
   height: auto;
+}
+button {
+  background-color: #000; 
+  color: #fff; 
+  border: none; 
+  padding: 10px 20px;
+  cursor: pointer; 
+  border-radius: 5px; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 

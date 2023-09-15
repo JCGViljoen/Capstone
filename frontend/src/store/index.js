@@ -174,6 +174,22 @@ export default createStore({
         console.error('Error fetching order items:', error);
       }
     },
+    async fetchUserDetails({ commit }, userId) {
+        try {
+          const response = await axios.get(`${apiUrl}user/${userId}`);
+          commit('setUser', response.data); 
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
+      },
+      async logout(context) {
+        try {
+          context.commit('setUser', null); 
+        } catch (error) {
+          console.error('Error logging out:', error);
+        }
+      },
+      
     
       ConfirmEditUser({ commit }, userData) {
         return new Promise((resolve, reject) => {

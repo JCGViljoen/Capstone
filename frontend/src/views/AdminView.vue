@@ -26,7 +26,13 @@
             <td>{{ product.price }}</td>
             <td>{{ product.stock_quantity }}</td>
             <td><img :src="product.product_image_url" :alt="product.prodName" style="max-width: 100px;"></td>
-            <td></td>
+            <td>
+              <router-link
+              :to="{ name: 'editproduct', params: { product_id: product.product_id } }"
+              class="del btn btn-info"
+              >Edit</router-link
+            ></td>
+            
             <td><button @click="deleteProduct(product.product_id)" class="btn btn-dark">Delete</button></td>
           </tr>
         </tbody>

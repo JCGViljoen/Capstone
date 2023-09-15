@@ -1,58 +1,90 @@
 <template>
-    <div class="user-profile">
-      <h1>User Profile</h1>
-      <div v-if="user">
-        <div class="profile-info">
-          <h2>{{ user.firstName }} {{ user.lastName }}</h2>
-          <p>Email: {{ user.email }}</p>
+    <div>
+      <div style="color: white;">
+        <h1 class="text-center p-3 heading-text text-white">My Account</h1>
+        <div class="card mx-auto my-3 p-5 user-card">
+          <div class="m-3 text-center">
+            <img :src="userData.profile_image_url" :alt="userData.firstName" class="img-fluid mb-5"
+              style="max-width: 60%; border-radius: 50%;" />
+            <h2 class="gold-text">
+              {{ userData.firstName }} {{ userData.lastName }}
+            </h2>
+            <cite>{{ $store.state.user?.userRole }}</cite>
+          </div>
+          <div>
+            <div class="card mb-5 p-3 info-card">
+              <span><strong>User ID: </strong>{{ userData.user_id }}</span> <br> <br>
+              <span><strong>Email: </strong>{{ userData.email }}</span> <br> <br>
+            </div>
+            <div class="d-flex justify-content-between">
+              <update-user-comp class="btn edit-btn" />
+              <button type="submit" class="btn del-btn" @click="deleteUser(userData.user_id)">Delete Account</button>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button @click="handleLogout">Logout</button>
+            </div>
+           
+          </div>
         </div>
-        <button @click="logout" class="logout-button">Logout</button>
-      </div>
-      <div v-else>
-        <p>User is not logged in.</p>
       </div>
     </div>
   </template>
   
   <script>
+  import router from '@/router';
+  import { mapActions } from 'vuex';
+  
   export default {
+    data() {
+      return {
+        userData: {}, 
+      };
+    },
+    created() {
+      const saveData = localStorage.getItem("user");
+      if (saveData) {
+        this.userData = JSON.parse(saveData); 
+      }
+  
+      const data = JSON.parse(localStorage.getItem("user"));
+      if (data) {
+        this.$store.commit("setUser", data);
+      }
+    },
+    methods: {
+    ...mapActions(['logout']), 
+
+    handleLogout() {
+      this.logout(); 
+    },
+  },
     computed: {
       user() {
         return this.$store.state.user;
       },
     },
     methods: {
-      logout() {
-        this.$store.dispatch('Logout');
+      deleteUser(user_id) {
+        this.$store.dispatch('UserDeleted', user_id);
+        this.$store.dispatch('LogOut');
+        router.push({ name: 'home' });
       },
     },
   };
   </script>
   
   <style scoped>
-  .user-profile {
-    max-width: 300px; 
-    margin: 0 auto; 
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
+  .img-fluid.mb-5 {
+    width: 150px;
   }
   
-  .profile-info {
-    margin-bottom: 20px;
+  .user-card {
+    height: 3%;
+    width: 33rem;
   }
   
-  .logout-button {
-    background-color: #e74c3c;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .logout-button:hover {
-    background-color: #c0392b;
+  .card {
+    height: 5%;
   }
   </style>
   
